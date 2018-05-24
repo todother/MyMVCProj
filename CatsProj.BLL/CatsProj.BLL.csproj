@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A69592D-1B88-403B-A403-B909797FAF8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CatsProj.BLL</RootNamespace>
+    <AssemblyName>CatsProj.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CatsProj.DAL\CatsProj.DAL.csproj">
+      <Project>{4426A5E0-DDDE-414A-9807-6E8D1FAD4557}</Project>
+      <Name>CatsProj.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CatsPrj.Model\CatsProj.Model.csproj">
+      <Project>{63ECF264-FE5A-4A11-A1FC-4D99EEBD7F5F}</Project>
+      <Name>CatsProj.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityModelConverter\EntityModelConverter.csproj">
+      <Project>{1B335FBF-447C-40A5-9872-36670047BE24}</Project>
+      <Name>EntityModelConverter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cats.DataEntiry\CatsProj.DataEntiry.csproj">
+      <Project>{AB21F193-8548-4A82-A889-C09B91BFDCA4}</Project>
+      <Name>CatsProj.DataEntiry</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Handlers\UserHandler.cs" />
+    <Compile Include="Handlers\PicsHandler.cs" />
+    <Compile Include="Handlers\PostsHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.10.1\lib\mono\4.7.1-api\System.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.10.1\lib\mono\4.7.1-api\System.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

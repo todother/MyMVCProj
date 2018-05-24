@@ -1,0 +1,9 @@
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Debug/CatsProj.DB.dll.config
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Debug/CatsProj.DB.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Debug/CatsProj.DB.pdb
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Debug/MySql.Data.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Debug/SqlSugar.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Debug/CatsProj.DB.csprojResolveAssemblyReference.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Debug/CatsProj.DB.csproj.CoreCompileInputs.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Debug/CatsProj.DB.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Debug/CatsProj.DB.pdb

@@ -1,0 +1,6 @@
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Debug/CatsProj.Model.csprojResolveAssemblyReference.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Debug/CatsProj.Model.csproj.CoreCompileInputs.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/bin/Debug/CatsPrj.Model.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/bin/Debug/CatsPrj.Model.pdb
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Debug/CatsPrj.Model.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Debug/CatsPrj.Model.pdb

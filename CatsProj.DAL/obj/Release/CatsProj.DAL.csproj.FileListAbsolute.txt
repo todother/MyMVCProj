@@ -1,0 +1,12 @@
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.DAL.dll.config
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.DAL.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/Cats.DataEntiry.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.DB.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/MySql.Data.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/Newtonsoft.Json.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/SqlSugar.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.DB.dll.config
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/Newtonsoft.Json.xml
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/obj/Release/CatsProj.DAL.csprojResolveAssemblyReference.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/obj/Release/CatsProj.DAL.csproj.CoreCompileInputs.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/obj/Release/CatsProj.DAL.dll

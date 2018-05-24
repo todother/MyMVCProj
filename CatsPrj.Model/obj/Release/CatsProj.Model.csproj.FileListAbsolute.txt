@@ -1,0 +1,3 @@
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/bin/Release/CatsPrj.Model.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Release/CatsProj.Model.csproj.CoreCompileInputs.cache
+/Users/kuzuen/Projects/MyMVCProj/CatsPrj.Model/obj/Release/CatsPrj.Model.dll

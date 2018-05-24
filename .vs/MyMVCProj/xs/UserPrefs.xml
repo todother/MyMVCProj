@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{516C9D83-5470-43E9-BEBF-545B6CF4DB19}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyMVCProj/Controllers/UserController.cs">
+    <Files>
+      <File FileName="MyMVCProj/Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="MyMVCProj/Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="MyMVCProj/Views/Web.config" Line="13" Column="28" />
+      <File FileName="MyMVCProj/App_Start/RouteConfig.cs" Line="1" Column="1" />
+      <File FileName="MyMVCProj/Web.config" Line="38" Column="17" />
+      <File FileName="MyMVCProj/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="MyMVCProj/Views/Home/Index.cshtml" Line="1" Column="1" />
+      <File FileName="MyMVCProj/Controllers/UserController.cs" Line="104" Column="14" />
+      <File FileName="MyMVCProj/src/pages/tabs/tabs.html" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/pages/home/home.ts" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/pages/home/home.html" Line="1" Column="1" />
+      <File FileName="packages/ztools.other.MySql.Data.6.9.8/Readme.txt" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/pages/login/login.html" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/pages/login/login.ts" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/app/app.component.ts" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/app/app.module.ts" Line="1" Column="1" />
+      <File FileName="MyMVCProj/src/pages/contact/contact.ts" Line="1" Column="1" />
+      <File FileName="MyMVCProj/config.xml" Line="1" Column="1" />
+      <File FileName="MyMVCProj/www/index.html" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="44" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="44" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="55" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="66" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="73" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="56" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="60" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="77" column="65" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="71" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="69" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MyMVCProj PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

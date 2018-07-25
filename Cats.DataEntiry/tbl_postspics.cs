@@ -7,9 +7,9 @@ namespace CatsDataEntity
     ///<summary>
     ///
     ///</summary>
-    public partial class tbl_userLoved
+    public partial class tbl_postsPics
     {
-           public tbl_userLoved(){
+           public tbl_postsPics(){
 
 
            }
@@ -18,14 +18,7 @@ namespace CatsDataEntity
            /// Default:
            /// Nullable:False
            /// </summary>           
-           public string lovedID {get;set;}
-
-           /// <summary>
-           /// Desc:
-           /// Default:
-           /// Nullable:True
-           /// </summary>           
-           public string userID {get;set;}
+           public string picID {get;set;}
 
            /// <summary>
            /// Desc:
@@ -39,7 +32,21 @@ namespace CatsDataEntity
            /// Default:
            /// Nullable:True
            /// </summary>           
-           public DateTime? lovedTime {get;set;}
+           public string picPath {get;set;}
+
+           /// <summary>
+           /// Desc:
+           /// Default:
+           /// Nullable:True
+           /// </summary>           
+           public int picIndex {get;set;}
+
+		/// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string picSimpPath { get; set; }
 
     }
 }

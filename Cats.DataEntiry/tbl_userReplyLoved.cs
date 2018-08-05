@@ -6,5 +6,10 @@ namespace Cats.DataEntiry
         public tbl_userReplyLoved()
         {
         }
+
+		public string lovedId { get; set; }
+		public string openId { get; set; }
+		public string replyId { get; set; }
+		public DateTime lovedTime { get; set; }
     }
 }

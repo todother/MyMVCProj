@@ -8,3 +8,14 @@
 /Users/kuzuen/Projects/MyMVCProj/EntityModelConverter/obj/Debug/EntityModelConverter.csproj.CoreCompileInputs.cache
 /Users/kuzuen/Projects/MyMVCProj/EntityModelConverter/obj/Debug/EntityModelConverter.dll
 /Users/kuzuen/Projects/MyMVCProj/EntityModelConverter/obj/Debug/EntityModelConverter.pdb
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\EntityModelConverter.dll
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\EntityModelConverter.pdb
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\Cats.DataEntiry.dll
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\CatsPrj.Model.dll
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\Cats.DataEntiry.pdb
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\bin\Debug\CatsPrj.Model.pdb
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\obj\Debug\EntityModelConverter.csprojAssemblyReference.cache
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\obj\Debug\EntityModelConverter.csproj.CoreCompileInputs.cache
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\obj\Debug\EntityModelConverter.csproj.CopyComplete
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\obj\Debug\EntityModelConverter.dll
+E:\MyMVCProj\MyMVCProj\EntityModelConverter\obj\Debug\EntityModelConverter.pdb

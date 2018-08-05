@@ -1,52 +1,67 @@
 ﻿<Properties StartupConfiguration="{516C9D83-5470-43E9-BEBF-545B6CF4DB19}|">
   <MonoDevelop.Ide.ItemProperties.DBHelper PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CatsProj.DAL/Providers/PostsProvider.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EntityModelConverter/ReplyNLoveConverter.cs">
     <Files>
-      <File FileName="CatsProj.DAL/Providers/UserProvider.cs" Line="31" Column="1" />
-      <File FileName="CatsProj.DAL/Providers/PostsProvider.cs" Line="91" Column="1" />
-      <File FileName="Cats.DataEntiry/tbl_posts.cs" Line="16" Column="12" />
-      <File FileName="CatsProj.BLL/Handlers/UserHandler.cs" Line="48" Column="1" />
-      <File FileName="Cats.DataEntiry/tbl_postsPics.cs" Line="42" Column="22" />
-      <File FileName="Cats.DataEntiry/tbl_reply.cs" Line="5" Column="25" />
-      <File FileName="Cats.DataEntiry/tbl_user.cs" Line="86" Column="38" />
-      <File FileName="Cats.DataEntiry/tbl_userLoved.cs" Line="5" Column="25" />
-      <File FileName="CatsPrj.Model/UserModel.cs" Line="53" Column="42" />
-      <File FileName="CatsProj.DB/SqlSugarInstance.cs" Line="19" Column="39" />
-      <File FileName="CatsProj.Tools/AesHelper.cs" Line="109" Column="25" />
-      <File FileName="MyMVCProj/Controllers/UserController.cs" Line="72" Column="1" />
-      <File FileName="MyMVCProj/Controllers/HomeController.cs" Line="1" Column="1" />
-      <File FileName="CatsProj.Tools/EmptyJSFile.js" Line="228" Column="3" />
-      <File FileName="Cats.DataEntiry/:Users:kuzuen:Projects:MyMVCProj:CatsPrj.Model:UserConverter.cs" Line="6" Column="5" />
-      <File FileName="Cats.DataEntiry/:Users:kuzuen:Projects:MyMVCProj:Cats.DataEntiry:UserEntiryToModel.cs" Line="6" Column="9" />
-      <File FileName="EntityModelConverter/MyClass.cs" Line="1" Column="1" />
-      <File FileName="EntityModelConverter/UserConverter.cs" Line="13" Column="13" />
-      <File FileName="CatsPrj.Model/PostsModel.cs" Line="39" Column="26" />
-      <File FileName="EntityModelConverter/PostsConverter.cs" Line="21" Column="39" />
-      <File FileName="CatsPrj.Model/watermark.cs" Line="7" Column="35" />
-      <File FileName="CatsProj.BLL/Handlers/PicsHandler.cs" Line="29" Column="1" />
-      <File FileName="CatsProj.BLL/Handlers/PostsHandler.cs" Line="29" Column="1" />
-      <File FileName="MyMVCProj/Controllers/PicsController.cs" Line="15" Column="1" />
-      <File FileName="CatsProj.DAL/Providers/PicsProvider.cs" Line="14" Column="1" />
-      <File FileName="CatsPrj.Model/PicsModel.cs" Line="32" Column="19" />
-      <File FileName="EntityModelConverter/PicsConverter.cs" Line="22" Column="17" />
-      <File FileName="Cats.DataEntiry/PostsPics.cs" Line="81" Column="22" />
-      <File FileName="MyMVCProj/Controllers/PostsController.cs" Line="23" Column="1" />
+      <File FileName="MyMVCProj/Controllers/UserController.cs" Line="36" Column="40" />
+      <File FileName="CatsProj.BLL/Handlers/UserHandler.cs" Line="62" Column="44" />
+      <File FileName="CatsProj.DAL/Providers/UserProvider.cs" Line="261" Column="23" />
+      <File FileName="CatsProj.DAL/Providers/PostsProvider.cs" Line="446" Column="18" />
+      <File FileName="CatsProj.BLL/Handlers/PostsHandler.cs" Line="176" Column="26" />
+      <File FileName="Cats.DataEntiry/PostsPics.cs" Line="88" Column="41" />
+      <File FileName="EntityModelConverter/PostsConverter.cs" Line="25" Column="34" />
+      <File FileName="Cats.DataEntiry/ScoreCardU.cs" Line="10" Column="37" />
+      <File FileName="CatsProj.DAL/app.config" Line="1" Column="1" />
+      <File FileName="CatsProj.BLL/Handlers/PicsHandler.cs" Line="47" Column="67" />
+      <File FileName="MyMVCProj/Controllers/PicsController.cs" Line="24" Column="4" />
+      <File FileName="CatsProj.DAL/Providers/PicsProvider.cs" Line="18" Column="1" />
+      <File FileName="Cats.DataEntiry/tbl_userviewed.cs" Line="12" Column="16" />
+      <File FileName="Cats.DataEntiry/UserReply.cs" Line="14" Column="3" />
+      <File FileName="Cats.DataEntiry/tbl_userReplyLoved.cs" Line="12" Column="24" />
+      <File FileName="Cats.DataEntiry/UserLovedReplybyPID.cs" Line="13" Column="38" />
+      <File FileName="CatsProj.DB/SqlSugarInstance.cs" Line="31" Column="6" />
+      <File FileName="EntityModelConverter/RepliesConverter.cs" Line="18" Column="37" />
+      <File FileName="CatsPrj.Model/RepliesModel.cs" Line="4" Column="18" />
+      <File FileName="CatsPrj.Model/UserReplyModel.cs" Line="11" Column="39" />
+      <File FileName="CatsPrj.Model/UserLovedModel.cs" Line="9" Column="3" />
+      <File FileName="Cats.DataEntiry/tbl_admin.cs" Line="10" Column="36" />
+      <File FileName="Cats.DataEntiry/tbl_delReason.cs" Line="15" Column="21" />
+      <File FileName="CatsProj.DAL/DelType.cs" Line="8" Column="54" />
+      <File FileName="MyMVCProj/Controllers/PostsController.cs" Line="92" Column="1" />
+      <File FileName="CatsPrj.Model/PostsModel.cs" Line="4" Column="18" />
+      <File FileName="Cats.DataEntiry/tbl_user.cs" Line="88" Column="19" />
+      <File FileName="CatsPrj.Model/UserModel.cs" Line="54" Column="43" />
+      <File FileName="EntityModelConverter/UserConverter.cs" Line="35" Column="37" />
+      <File FileName="Cats.DataEntiry/ReplyNLoveCount.cs" Line="10" Column="3" />
+      <File FileName="CatsPrj.Model/ReplyNLoveModel.cs" Line="13" Column="49" />
+      <File FileName="EntityModelConverter/ReplyNLoveConverter.cs" Line="9" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="57" column="1" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="70" column="1" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="58" column="1" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="62" column="1" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/UserController.cs" relfile="MyMVCProj/Controllers/UserController.cs" line="74" column="65" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/SqlSugarInstance.cs" relfile="CatsProj.DB/SqlSugarInstance.cs" line="37" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/SqlSugarInstance.cs" relfile="CatsProj.DB/SqlSugarInstance.cs" line="73" column="1" />
       <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/AesHelper.cs" relfile="CatsProj.Tools/AesHelper.cs" line="65" column="1" />
       <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/AesHelper.cs" relfile="CatsProj.Tools/AesHelper.cs" line="73" column="1" />
       <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/AesHelper.cs" relfile="CatsProj.Tools/AesHelper.cs" line="103" column="1" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/UserProvider.cs" relfile="CatsProj.DAL/Providers/UserProvider.cs" line="63" column="15" />
-      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="95" column="19" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/UserProvider.cs" relfile="CatsProj.DAL/Providers/UserProvider.cs" line="73" column="15" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/UserProvider.cs" relfile="CatsProj.DAL/Providers/UserProvider.cs" line="50" column="28" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/UserProvider.cs" relfile="CatsProj.DAL/Providers/UserProvider.cs" line="214" column="33" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="303" column="34" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PostsHandler.cs" relfile="CatsProj.BLL/Handlers/PostsHandler.cs" line="173" column="59" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="392" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="401" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/Controllers/PostsController.cs" relfile="MyMVCProj/Controllers/PostsController.cs" line="92" column="54" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="60" column="15" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="128" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="131" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="176" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="180" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="177" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="39" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/Handlers/PicsHandler.cs" relfile="CatsProj.BLL/Handlers/PicsHandler.cs" line="40" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="403" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="404" column="1" />
+      <Breakpoint file="/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/Providers/PostsProvider.cs" relfile="CatsProj.DAL/Providers/PostsProvider.cs" line="405" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

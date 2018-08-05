@@ -4,3 +4,9 @@
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Debug/CatsProj.DataEntiry.csproj.CoreCompileInputs.cache
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Debug/Cats.DataEntiry.dll
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Debug/Cats.DataEntiry.pdb
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\bin\Debug\Cats.DataEntiry.dll
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\bin\Debug\Cats.DataEntiry.pdb
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Debug\CatsProj.DataEntiry.csproj.CoreCompileInputs.cache
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Debug\Cats.DataEntiry.dll
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Debug\Cats.DataEntiry.pdb
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Debug\CatsProj.DataEntiry.csprojAssemblyReference.cache

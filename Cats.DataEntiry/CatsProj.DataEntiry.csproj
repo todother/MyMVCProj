@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,7 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Cats.DataEntiry</RootNamespace>
     <AssemblyName>Cats.DataEntiry</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,12 +32,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbl_coverPage.cs" />
     <Compile Include="tbl_posts.cs" />
-    <Compile Include="tbl_postsPics.cs" />
+    <Compile Include="tbl_postspics.cs" />
     <Compile Include="tbl_reply.cs" />
+    <Compile Include="tbl_replyAfterReply.cs" />
+    <Compile Include="tbl_report.cs" />
+    <Compile Include="tbl_token.cs" />
     <Compile Include="tbl_user.cs" />
-    <Compile Include="tbl_userLoved.cs" />
+    <Compile Include="tbl_userloved.cs" />
     <Compile Include="PostsPics.cs" />
+    <Compile Include="tbl_userShare.cs" />
+    <Compile Include="tbl_userviewed.cs" />
+    <Compile Include="UserReply.cs" />
+    <Compile Include="tbl_userConfig.cs" />
+    <Compile Include="tbl_userFollowed.cs" />
+    <Compile Include="ScoreCardU.cs" />
+    <Compile Include="tbl_userReplyLoved.cs" />
+    <Compile Include="UserLovedReplybyPID.cs" />
+    <Compile Include="tbl_admin.cs" />
+    <Compile Include="tbl_delReason.cs" />
+    <Compile Include="ReplyNLoveCount.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

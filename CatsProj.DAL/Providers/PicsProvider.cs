@@ -8,10 +8,10 @@ namespace CatsProj.DAL.Providers
 {
     public class PicsProvider
     {
-        public void savePics(tbl_postsPics entity)
+        public void savePics(tbl_postspics entity)
 		{
 			SqlSugarClient db = SqlSugarInstance.newInstance();
-			db.Insertable<tbl_postsPics>(entity).ExecuteCommand();
+			db.Insertable<tbl_postspics>(entity).ExecuteCommand();
 		}
     }
 }

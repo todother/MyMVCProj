@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsProj.Web", "MyMVCProj\CatsProj.Web.csproj", "{516C9D83-5470-43E9-BEBF-545B6CF4DB19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsProj.BLL", "CatsProj.BLL\CatsProj.BLL.csproj", "{2A69592D-1B88-403B-A403-B909797FAF8F}"
@@ -18,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatsProj.Tools", "CatsProj.Tools\CatsProj.Tools.csproj", "{A9BE3E53-546D-44FE-8974-DEF1050D901D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityModelConverter", "EntityModelConverter\EntityModelConverter.csproj", "{1B335FBF-447C-40A5-9872-36670047BE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzToken", "QuartzToken\QuartzToken.csproj", "{F59313AA-38E2-4F9B-8EFE-6052B3880F36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,5 +64,15 @@ Global
 		{1B335FBF-447C-40A5-9872-36670047BE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B335FBF-447C-40A5-9872-36670047BE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B335FBF-447C-40A5-9872-36670047BE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59313AA-38E2-4F9B-8EFE-6052B3880F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59313AA-38E2-4F9B-8EFE-6052B3880F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59313AA-38E2-4F9B-8EFE-6052B3880F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59313AA-38E2-4F9B-8EFE-6052B3880F36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42672392-0EC1-44EB-8632-FB136FB12973}
 	EndGlobalSection
 EndGlobal

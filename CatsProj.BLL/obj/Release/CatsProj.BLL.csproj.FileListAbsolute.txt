@@ -1,8 +1,10 @@
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.BLL.dll.config
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.BLL.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/Cats.DataEntiry.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsPrj.Model.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.DAL.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/EntityModelConverter.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/MySql.Data.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/Newtonsoft.Json.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Web.dll
@@ -10,12 +12,11 @@
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.DB.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Configuration.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Xml.dll
-/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Drawing.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.EnterpriseServices.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Web.ApplicationServices.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.ComponentModel.DataAnnotations.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Web.Services.dll
-/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/System.Transactions.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.Tools.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.DAL.dll.config
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/Newtonsoft.Json.xml
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.BLL/bin/Release/CatsProj.DB.dll.config

@@ -7,9 +7,9 @@ namespace CatsDataEntity
     ///<summary>
     ///
     ///</summary>
-    public partial class tbl_postsPics
+    public partial class tbl_postspics
     {
-           public tbl_postsPics(){
+           public tbl_postspics(){
 
 
            }

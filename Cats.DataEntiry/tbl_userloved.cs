@@ -9,7 +9,7 @@ namespace CatsDataEntity
     ///</summary>
     public partial class tbl_userloved
     {
-           public tbl_userLoved(){
+           public tbl_userloved(){
 
 
            }
@@ -41,5 +41,6 @@ namespace CatsDataEntity
            /// </summary>           
            public DateTime? lovedTime {get;set;}
 
+        public int loveStatus { get; set; }
     }
 }

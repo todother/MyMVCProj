@@ -6,5 +6,7 @@ namespace Cats.DataEntiry
         public tbl_admin()
         {
         }
+
+		public string openId { get; set; }
     }
 }

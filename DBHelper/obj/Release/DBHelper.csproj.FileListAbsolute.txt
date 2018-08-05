@@ -4,6 +4,7 @@
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/MySql.Data.dll
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/Newtonsoft.Json.dll
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/SqlSugar.dll
+/Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/CatsProj.Tools.dll
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/CatsProj.DB.dll.config
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/bin/Release/Newtonsoft.Json.xml
 /Users/kuzuen/Projects/MyMVCProj/DBHelper/obj/Release/DBHelper.csprojResolveAssemblyReference.cache

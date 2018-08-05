@@ -23,6 +23,7 @@ namespace Cats.DataEntiry
         /// Nullable:True
         /// </summary>           
         public string postsMaker { get; set; }
+		public string openId { get; set; }
 
         /// <summary>
         /// Desc:
@@ -80,5 +81,16 @@ namespace Cats.DataEntiry
 
 		public int picIndex { get; set; }
 
+		public string picSimpPath { get; set; }
+
+		public string picPath { get; set; }
+
+		public string makerPhoto { get; set; }
+
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public string postsLocation { get; set; }
+        public string postsType { get; set; }
+        public int ifOfficial { get; set; }
     }
 }

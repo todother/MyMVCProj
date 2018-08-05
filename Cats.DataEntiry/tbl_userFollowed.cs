@@ -6,5 +6,10 @@ namespace Cats.DataEntiry
         public tbl_userFollowed()
         {
         }
+
+		public string followId { get; set; }
+		public string userId { get; set; }
+		public string followedUser { get; set; }
+		public DateTime followedTime { get; set; }
     }
 }

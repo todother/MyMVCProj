@@ -18,7 +18,7 @@ namespace EntityModelConverter
                 userEntiry.lastLoginDate = DateTime.Now;
                 userEntiry.nickName = model.nickName;
                 userEntiry.province = model.province;
-			userEntiry.language = model.language;
+			    userEntiry.language = model.language;
                 return userEntiry;
             }
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,7 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>EntityModelConverter</RootNamespace>
     <AssemblyName>EntityModelConverter</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +35,11 @@
     <Compile Include="UserConverter.cs" />
     <Compile Include="PostsConverter.cs" />
     <Compile Include="PicsConverter.cs" />
+    <Compile Include="UserLovedConverter.cs" />
+    <Compile Include="UserReplyConverter.cs" />
+    <Compile Include="RepliesConverter.cs" />
+    <Compile Include="ConfigConverter.cs" />
+    <Compile Include="ReplyNLoveConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cats.DataEntiry\CatsProj.DataEntiry.csproj">

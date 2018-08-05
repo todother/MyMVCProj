@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace CatsPrj.Model
 {
-    public class RepliedModel
+    public class RepliesModel
     {
 		public string replyMaker { get; set; }
         public string nickName { get; set; }
@@ -10,5 +12,11 @@ namespace CatsPrj.Model
         public string replyContent { get; set; }
         public bool replyLoved { get; set; }
         public string postsId { get; set; }
+		public long lovedCount { get; set; }
+        public List<RepliesModel> afterReplyList = new List<RepliesModel>();
+        public long afterReplyCount { get; set; }
+        public DateTime afterReplyDate { get; set; }
+        public string replyToUser { get; set; }
+        public bool isAdmin { get; set; }
     }
 }

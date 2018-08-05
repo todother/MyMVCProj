@@ -5,6 +5,7 @@
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/MySql.Data.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/Newtonsoft.Json.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/SqlSugar.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.Tools.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/CatsProj.DB.dll.config
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/bin/Release/Newtonsoft.Json.xml
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DAL/obj/Release/CatsProj.DAL.csprojResolveAssemblyReference.cache

@@ -85,5 +85,9 @@ namespace CatsDataEntity
 
 		public string language { get; set; }
 
+		public DateTime? lastRefreshDate { get; set; }
+
+		public DateTime? lastRefreshFans { get; set; }
+
     }
 }

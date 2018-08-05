@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using QuartzToken;
 
 namespace MyMVCProj
 {
@@ -10,6 +11,7 @@ namespace MyMVCProj
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            TokenTrigger.Start();
         }
     }
 }

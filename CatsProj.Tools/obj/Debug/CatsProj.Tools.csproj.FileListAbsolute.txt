@@ -3,4 +3,9 @@
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/obj/Debug/CatsProj.Tools.csproj.CoreCompileInputs.cache
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/obj/Debug/CatsProj.Tools.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/obj/Debug/CatsProj.Tools.pdb
-/Users/kuzuen/Projects/MyMVCProj/CatsProj.Tools/obj/Debug/CatsProj.Tools.csprojResolveAssemblyReference.cache
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\bin\Debug\CatsProj.Tools.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\bin\Debug\CatsProj.Tools.pdb
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\obj\Debug\CatsProj.Tools.csproj.CoreCompileInputs.cache
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\obj\Debug\CatsProj.Tools.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\obj\Debug\CatsProj.Tools.pdb
+E:\MyMVCProj\MyMVCProj\CatsProj.Tools\obj\Debug\CatsProj.Tools.csprojAssemblyReference.cache

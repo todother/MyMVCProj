@@ -1,5 +1,6 @@
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Release/CatsProj.DB.dll.config
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Release/CatsProj.DB.dll
+/Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Release/CatsProj.Tools.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Release/MySql.Data.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/bin/Release/SqlSugar.dll
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Release/CatsProj.DB.csprojResolveAssemblyReference.cache

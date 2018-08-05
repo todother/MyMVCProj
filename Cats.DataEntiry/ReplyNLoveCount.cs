@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CatsProj.DB
+namespace CatsProj.DataEntiry
 {
     public class ReplyNLoveCount
     {
@@ -10,6 +10,8 @@ namespace CatsProj.DB
 		public string postsId{get;set;}
 		public long replyCount{get;set;}
 		public long postsLoveCount{get;set;}
-		public long replyLoveCount{get;set;}
+		//public long replyLoveCount{get;set;}
+		public string picsSimpPath { get; set; }
+		public bool read { get; set; }
     }
 }

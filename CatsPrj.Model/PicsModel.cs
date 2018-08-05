@@ -30,5 +30,12 @@ namespace CatsPrj.Model
         /// Nullable:True
         /// </summary>           
         public int picIndex { get; set; }
+
+		/// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string picSimpPath { get; set; }
     }
 }

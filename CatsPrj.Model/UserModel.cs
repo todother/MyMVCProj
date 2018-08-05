@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace CatsPrj.Model
 {
     public class UserModel

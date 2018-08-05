@@ -58,5 +58,21 @@ namespace CatsPrj.Model
 		public string postsPics { get; set; }
        
 		public string makerName { get; set; }
+		public string makerID { get; set; }
+
+		public string picsSimpPath { get; set; }
+
+		public string picsPath { get; set; }
+
+		public string whenPosts { get; set; }
+
+		public string makerPhoto { get; set; }
+
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public string postsLocation { get; set; }
+        public string postsType { get; set; }
+        public int postsStatus { get; set; }
+        public int ifOfficial { get; set; }
     }
 }

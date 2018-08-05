@@ -9,10 +9,19 @@ namespace MyMVCProj.Controllers
 {
     public class PicsController : Controller
     {
-		public void savePics(HttpPostedFileWrapper name,string postsId,int idx)
+		public JsonResult savePics(HttpPostedFileWrapper name,string postsId,int idx)
 		{
-			PicsHandler handler = new PicsHandler();
-			handler.savePics(name, postsId,idx);
+			try
+			{
+				PicsHandler handler = new PicsHandler();
+                
+				bool result= handler.savePics(name, postsId, idx);
+				return Json(new { result=result==true?"true":"false" }, JsonRequestBehavior.AllowGet);
+			}
+            catch(Exception e)
+			{
+				return Json(new { name = "fail" }, JsonRequestBehavior.AllowGet);
+			}
 		}
     }
 }

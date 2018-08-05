@@ -16,6 +16,7 @@
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/CatsProj.DAL.dll
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/EntityModelConverter.dll
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/CatsProj.DB.dll
+/Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/CatsProj.BLL.dll.config
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/System.Web.Razor.xml
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/System.Web.Helpers.xml
 /Users/kuzuen/Projects/MyMVCProj/MyMVCProj/bin/System.Web.WebPages.Deployment.xml

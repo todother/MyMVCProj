@@ -31,6 +31,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="tbl_transpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tbl_coverPage.cs" />
     <Compile Include="tbl_posts.cs" />

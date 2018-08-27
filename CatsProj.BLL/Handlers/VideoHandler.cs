@@ -33,7 +33,7 @@ namespace CatsProj.BLL.Handlers
                 video.SaveAs(tempPathfull);
                 UserProvider provider = new UserProvider();
                 tbl_user user = provider.getUserInfo(openId);
-                string cmd = "-ss " + string.Format("{0:F}", startTime<=3?0: startTime) + " -t " + string.Format("{0:F}", (endTime - startTime)>=10?10: (endTime - startTime)) + " -i " + tempPathfull + " -vcodec copy -acodec copy " + filePathfull + " -y";
+                string cmd = "-ss " + string.Format("{0:F}", startTime <= 3 ? 0 : startTime) + " -t " + string.Format("{0:F}", (endTime - startTime) >= 10 ? 10 : (endTime - startTime)) + " -i " + tempPathfull + " -vcodec copy -acodec copy " + filePathfull + " -y";
                 process.RunCMDVedio(cmd);
             }
             generateSimpPic(filePathfull, height, width, sthTemp);
@@ -78,7 +78,7 @@ namespace CatsProj.BLL.Handlers
             }
         }
 
-        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent,int ifOfficial)
+        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent, int ifOfficial)
         {
             string extension = new FileInfo(video.FileName).Extension;
             string videoId = Guid.NewGuid().ToString();
@@ -106,17 +106,17 @@ namespace CatsProj.BLL.Handlers
             string postsType = "V";
             PostsHandler handler = new PostsHandler();
             string postsId = Guid.NewGuid().ToString();
-            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, postsType,ifOfficial);
+            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, postsType, ifOfficial);
             PicsHandler picsHandler = new PicsHandler();
             picsHandler.saveVideoPics(postsId, openId, "/video/" + sthTemp + extension, "/images/simple/" + sthTemp + ".jpg", sthTemp);
             File.Delete(filePathfull);
         }
 
-        public void saveProcessedVideo(string openId, string videoId, double latitude, double longitude, string location, string postsContent, string extension,int ifOfficial)
+        public void saveProcessedVideo(string openId, string videoId, double latitude, double longitude, string location, string postsContent, string extension, int ifOfficial)
         {
             PostsHandler handler = new PostsHandler();
             string postsId = Guid.NewGuid().ToString();
-            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, "V",ifOfficial);
+            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, "V", ifOfficial);
             string filePathfull = HttpContext.Current.Server.MapPath("~/video/" + videoId + extension);
             string simPicPath = HttpContext.Current.Server.MapPath("~/images/simple/" + videoId + ".jpg");
             PicsHandler picsHandler = new PicsHandler();
@@ -138,8 +138,50 @@ namespace CatsProj.BLL.Handlers
                 string simPicPath = HttpContext.Current.Server.MapPath("~/images/simple/" + fileName + ".jpg");
                 string cmd = "-i " + videoPath + " -f image2 -ss 0 -vframes 1 -s " + width.ToString() + "x" + height.ToString() + " " + simPicPath + " -y";
                 process.RunCMDVedio(cmd);
+                Image resImg = addPlayIcon(simPicPath);
+                resImg.Save(simPicPath);
                 return simPicPath;
             }
+        }
+
+        public Image addPlayIcon(string picPath)
+        {
+            Image img = Bitmap.FromFile(picPath);
+            
+            int width = 0;
+            int height = 0;
+            width = img.Width;
+            height = img.Height;
+            
+            int btnWidth = width >= height ? height : width;
+            Image rectImage = new Bitmap(btnWidth, btnWidth);
+            Graphics rect = Graphics.FromImage(rectImage);
+            rect.DrawImage(img, 0,0,new Rectangle((width-btnWidth)/2,(height-btnWidth)/2,btnWidth,btnWidth),GraphicsUnit.Pixel);
+            rect.Save();
+            rect.Dispose();
+            img.Dispose();
+            rectImage.Save(picPath);
+            rectImage.Dispose();
+            img = Bitmap.FromFile(picPath);
+            btnWidth = btnWidth / 4;
+            width = img.Width;
+            height = img.Height;
+            int curX, curY;
+            curX = (width - btnWidth) / 2;
+            curY = (height - btnWidth) / 2;
+            Image newImage = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(newImage);
+            g.DrawImage(img, 0, 0);
+            g.Save();
+            img.Dispose();
+            Image playIcon = Bitmap.FromFile(HttpContext.Current.Server.MapPath("~/icon/play.png"));
+            Bitmap pIcon = PicsHandler.ResizeImage(playIcon, btnWidth, btnWidth);
+            //var rect = new Rectangle(0, 0, btnWidth, btnWidth);
+            g.DrawImage(pIcon, curX, curY);
+            g.Save();
+            g.Dispose();
+            return newImage;
+
         }
 
 

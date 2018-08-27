@@ -276,5 +276,11 @@ namespace CatsProj.BLL.Handler
 		{
 			new UserProvider().updateLastRefreshFans(openId);
 		}
+
+        public void userTransPage(string openId,string pageName)
+        {
+            UserProvider provider = new UserProvider();
+            provider.userTransPage(openId, pageName);
+        }
     }
 }

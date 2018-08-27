@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using SqlSugar;
-
-using System.Web.Script.Serialization;
-
-using Newtonsoft.Json;
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography;
-using CatsProj.Tools;
-using System.Text;
+﻿using CatsPrj.Model;
 using CatsProj.BLL.Handler;
-using CatsPrj.Model;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace MyMVCProj.Controllers
 {
@@ -128,6 +114,12 @@ namespace MyMVCProj.Controllers
             UserModel user = new UserModel();
             user = new UserHandler().getCoverUser();
             return Json(new { coverUser = user }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void userTransPage(string openId,string pageName)
+        {
+            UserHandler handler = new UserHandler();
+            handler.userTransPage(openId, pageName);
         }
 
     }

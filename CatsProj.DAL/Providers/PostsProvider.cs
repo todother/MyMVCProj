@@ -357,7 +357,7 @@ namespace CatsProj.DAL.Providers
                 lovedCount = SqlFunc.Subqueryable<tbl_userReplyLoved>().Where(o => o.replyId == tr.replyID).Count(),
                 isAdmin=SqlFunc.IIF(admins.Contains(tr.replyMaker),true,false)
             }).Where(tp => tp.postsId == SqlFunc.Subqueryable<tbl_posts>().Where(o => o.postsID == postsId).Select(o => o.postsID)).
-                  Where(tr => tr.replyDate <= refreshTime).OrderBy(tr => SqlFunc.IIF(admins.Contains(tr.replyMaker), 2, SqlFunc.IIF(tr.replyMaker == openId, 1, 0)), OrderByType.Desc).OrderBy(tr => tr.replyDate, OrderByType.Desc).ToPageList(from / count + 1, count);
+                  Where(tr => tr.replyDate <= refreshTime).OrderBy(tr => SqlFunc.IIF(admins.Contains(tr.replyMaker), 2, SqlFunc.IIF(tr.replyMaker == openId, 1, 0)), OrderByType.Desc).OrderBy(tr => tr.replyDate, OrderByType.Asc).ToPageList(from / count + 1, count);
 
                 List<string> userLoved = db.Queryable<tbl_posts, tbl_reply, tbl_userReplyLoved>((tp, tr, tl) => new object[]{
                 JoinType.Left,tp.postsID==tr.postsID,

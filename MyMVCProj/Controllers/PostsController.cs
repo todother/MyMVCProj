@@ -30,6 +30,7 @@ namespace MyMVCProj.Controllers
         public JsonResult getPostsDetail(string postsId, string userId, int from, int count, DateTime refreshTime, string openId)
         {
             PostsHandler handler = new PostsHandler();
+            handler.viewPosts(openId, postsId);
             PostsModel result = new PostsModel();
             bool ifLoved = false;
             List<RepliesModel> replies = new List<RepliesModel>();

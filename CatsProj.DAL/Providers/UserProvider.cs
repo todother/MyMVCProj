@@ -28,10 +28,16 @@ namespace CatsProj.DAL.Providers
                 {
                     if (curUser.avantarUrl != user.avantarUrl || curUser.nickName != user.nickName || curUser.gender != user.gender || curUser.country != user.country || curUser.city != user.city || curUser.province != user.province)
                     {
-                        user.lastLoginDate = DateTime.Now;
-                        user.registerDate = curUser.registerDate;
-                        user.userStatus = curUser.userStatus;
-                        db.Updateable<tbl_user>(user).Where(o => o.openid == user.openid);
+                        curUser.lastLoginDate = DateTime.Now;
+                        //user.registerDate = curUser.registerDate;
+                        //user.userStatus = curUser.userStatus;
+                        curUser.avantarUrl = user.avantarUrl;
+                        curUser.nickName = user.nickName;
+                        curUser.gender = user.gender;
+                        curUser.country = user.country;
+                        curUser.city = user.city;
+                        curUser.province = user.province;
+                        db.Updateable<tbl_user>(curUser).Where(o => o.openid == user.openid).ExecuteCommand();
                     }
                     updateLastLoginDate(user.openid);
                 }
@@ -332,6 +338,17 @@ namespace CatsProj.DAL.Providers
             string userId = db.Queryable<tbl_coverPage>().Where(o => o.startDate <= DateTime.Now).OrderBy(o => o.startDate, OrderByType.Desc).First().userId;
             tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == userId).First();
             return user;
+        }
+
+        public void userTransPage(string openId,string pageName)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_transpage transpage = new tbl_transpage();
+            transpage.openId = openId;
+            transpage.pageName = pageName;
+            transpage.transId = Guid.NewGuid().ToString();
+            transpage.transTime = DateTime.Now;
+            db.Insertable<tbl_transpage>(transpage).ExecuteCommand();
         }
     }
 }

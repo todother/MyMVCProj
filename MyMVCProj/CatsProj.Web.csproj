@@ -105,6 +105,49 @@
     <Compile Include="Controllers\PostsController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="event_1.jpg" />
+    <Content Include="grayback.gif" />
+    <Content Include="icon\backplus_20180621.png" />
+    <Content Include="icon\litterBin_20180621.png" />
+    <Content Include="icon\litterBin_20180621_bk.png" />
+    <Content Include="icon\mute.png" />
+    <Content Include="icon\unMute.png" />
+    <Content Include="icon\下拉_20180623.png" />
+    <Content Include="icon\举报.png" />
+    <Content Include="icon\关_20180731.png" />
+    <Content Include="icon\分享.png" />
+    <Content Include="icon\加_20180621.png" />
+    <Content Include="icon\发布_20180621.png" />
+    <Content Include="icon\回复.png" />
+    <Content Include="icon\回复_20180718.png" />
+    <Content Include="icon\垃圾桶_20180704.png" />
+    <Content Include="icon\垃圾桶_20180718.png" />
+    <Content Include="icon\垃圾箱_20180621.png" />
+    <Content Include="icon\客户_20180621.png" />
+    <Content Include="icon\客户_S_20180621.png" />
+    <Content Include="icon\对话框_20180621.png" />
+    <Content Include="icon\开_20180731.png" />
+    <Content Include="icon\房子_20180621.png" />
+    <Content Include="icon\房子_S_20180621.png" />
+    <Content Include="icon\换一批_20180621.png" />
+    <Content Include="icon\星星.png" />
+    <Content Include="icon\爪子.png" />
+    <Content Include="icon\爪子20180718.png" />
+    <Content Include="icon\爪子_S.png" />
+    <Content Include="icon\爪子_S20180718.png" />
+    <Content Include="icon\爱心_20180621.png" />
+    <Content Include="icon\爱心_S_20180621.png" />
+    <Content Include="icon\相机.png" />
+    <Content Include="icon\相机_20180621.png" />
+    <Content Include="icon\相机_G.png" />
+    <Content Include="icon\相机_GS.png" />
+    <Content Include="icon\相机_S_20180621.png" />
+    <Content Include="icon\足迹_20180621.png" />
+    <Content Include="icon\足迹_20180704.png" />
+    <Content Include="icon\锁链_20180621.png" />
+    <Content Include="logo.png" />
+    <Content Include="logoGIF.gif" />
+    <Content Include="LogoPNG.png" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -11484,6 +11527,8 @@
     <Content Include="src\pages\home\home.scss" />
     <Content Include="src\pages\tabs\tabs.html" />
     <Content Include="src\theme\variables.scss" />
+    <Content Include="windowsLogo.jpg" />
+    <Content Include="windowsLogo_new.jpg" />
     <Content Include="www\index.html" />
     <Content Include="www\service-worker.js" />
     <Content Include="www\assets\fonts\ionicons.eot" />

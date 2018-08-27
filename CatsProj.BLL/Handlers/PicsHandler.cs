@@ -234,5 +234,52 @@ namespace CatsProj.BLL.Handlers
             g.DrawString(watermarkText, drawFont, new SolidBrush(Color.White), xpos + 1, ypos + 1);
 			return img;
         }
+
+        public string drawContent(string origPicPath,string content,string madeBy)
+        {
+            Bitmap bmp = new Bitmap(origPicPath);
+            int mode = 0;//0是横向排版，1是纵向排版
+            int width = bmp.Width;
+            float rpx = 0;
+            rpx = bmp.Width / 750;
+            int height = bmp.Height;
+            if (width >= height)
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
+            }
+            int fontSize = 400 / 9;
+            int border = 5;
+            int curX = 0;int curY = 0;
+            int curRow = 0;
+            Bitmap contentPic = new Bitmap(750, 400);
+            int i = 0;int j = 0;
+            for(i=0;i<750;i++)
+            {
+                for(j=0;j<400;j++)
+                {
+                    contentPic.SetPixel(i, j, Color.Transparent);
+                }
+            }
+            Graphics g = Graphics.FromImage(contentPic);
+            Font drawFont = new Font("方正清刻本悦宋简体", fontSize, FontStyle.Regular, GraphicsUnit.Pixel);
+            content = "生活不止眼前的苟且，还有诗和远方的田野。";
+            for (i = 0; i < content.Length; i++)
+            {
+                curY = curY + border;
+                g.DrawString(content[i].ToString(), drawFont, new SolidBrush(Color.Black), curRow * (fontSize + border), curY+border);
+                curY = curY + fontSize;
+                if(curY>400-fontSize-border)
+                {
+                    curY = 0;
+                    curRow = curRow + 1;
+                }
+            }
+            contentPic.Save(@"E:/text.png", ImageFormat.Png);
+            return "1";
+        }
     }
 }

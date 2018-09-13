@@ -37,5 +37,7 @@ namespace CatsPrj.Model
         /// Nullable:True
         /// </summary>           
         public string picSimpPath { get; set; }
+
+        public decimal picsRate { get; set; }
     }
 }

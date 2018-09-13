@@ -13,6 +13,7 @@ namespace EntityModelConverter
 			model.picPath = entity.picPath;
 			model.postsID = entity.postsID;
 			model.picSimpPath = entity.picSimpPath;
+            model.picsRate = entity.picsRate;
 			return model;
 		}
         
@@ -24,6 +25,7 @@ namespace EntityModelConverter
 			entity.picPath = model.picPath;
 			entity.postsID = model.postsID;
 			entity.picSimpPath = model.picSimpPath;
+            entity.picsRate = model.picsRate;
 			return entity;
 		}
 

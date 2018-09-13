@@ -19,11 +19,11 @@ namespace MyMVCProj.Controllers
 			return Json(new { result = postsId,ifSucc=succ }, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult getPosts(string openId,int dataFrom,int count,DateTime refreshTime)
+        public JsonResult getPosts(string openId, int dataFrom, int count, DateTime refreshTime,int currentSel)
 		{
 			PostsHandler handler = new PostsHandler();
 			List<PostsModel> list = new List<PostsModel>();
-			list = handler.getPosts(openId,dataFrom, count,refreshTime);
+			list = handler.getPosts(openId,dataFrom, count,refreshTime, currentSel);
 			return Json(new {result=list},JsonRequestBehavior.AllowGet);
 		}
 
@@ -40,7 +40,7 @@ namespace MyMVCProj.Controllers
             bool ifLegal = handler.ifLegalPosts(postsId);
             List<RepliesModel> myReplies = new List<RepliesModel>();
             string repliesCount = string.Empty;
-
+            string shareCount = string.Empty;
 
             result = handler.getPostsDetail(postsId);
             ifLoved = handler.ifUserLoved(postsId, userId);
@@ -51,8 +51,9 @@ namespace MyMVCProj.Controllers
             ifFollowed = new UserHandler().ifFollowed(userId, postsId);
             readCount = handler.getReadCount(postsId);
             ifLegal = ifLegal && result.postsStatus != 1;
+            shareCount = handler.getShareCount(postsId);
             bool ifMuted = new UserHandler().getConfigModel(openId).videoMuted == 1 ? true:false ;
-            return Json(new { result = result, ifLoved = ifLoved, lovedTimes = lovedTimes, repliesCount= repliesCount, replies = replies, ifFollowed = ifFollowed, readCount = readCount, ifLegal = ifLegal,myReply=myReplies, ifMuted=ifMuted }, JsonRequestBehavior.AllowGet);
+            return Json(new { result = result, ifLoved = ifLoved, lovedTimes = lovedTimes, repliesCount= repliesCount,shareCount=shareCount, replies = replies, ifFollowed = ifFollowed, readCount = readCount, ifLegal = ifLegal,myReply=myReplies, ifMuted=ifMuted }, JsonRequestBehavior.AllowGet);
         }
 
 		public JsonResult getMoreReply(string postsId,  int from, int count, DateTime refreshTime,string openId)
@@ -84,7 +85,9 @@ namespace MyMVCProj.Controllers
 			UserModel user = uHandler.getUserInfo(openId);
 			bool ifFollowed = uHandler.ifUserFollowedByOpenId(userId, openId);
             string fansCount = uHandler.transferFansCountToString( uHandler.getFansCount(openId));
-			return Json(new { posts = posts, user = user,ifFollowed= ifFollowed, fansCount = fansCount }, JsonRequestBehavior.AllowGet);
+            string followedCount= uHandler.transferFansCountToString(uHandler.getFollowedCount(openId));
+            string lovedCount= uHandler.transferFansCountToString(uHandler.getLovedCount(openId));
+            return Json(new { posts = posts, user = user,ifFollowed= ifFollowed, fansCount = fansCount,followedCount=followedCount,lovedCount=lovedCount }, JsonRequestBehavior.AllowGet);
 
 		}
 
@@ -182,6 +185,24 @@ namespace MyMVCProj.Controllers
             new PostsHandler().userSharePosts(openId, postsId);
         }
 
+        public JsonResult generateQRCode(string openId,string postsId)
+        {
+            PostsHandler handler = new PostsHandler();
+            string qrCode = handler.getQRCode(openId, postsId);
+            return Json(new { result = qrCode }, JsonRequestBehavior.AllowGet);
+        }
 
+        public JsonResult getSharePostsId(string shareId)
+        {
+            PostsHandler handler = new PostsHandler();
+            string postsId = handler.getPostsIdFromQRCode(shareId);
+            return Json(new { result = postsId }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getEventList()
+        {
+            List<EventModel> result = new PostsHandler().getEventsList();
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

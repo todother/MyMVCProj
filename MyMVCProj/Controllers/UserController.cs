@@ -122,5 +122,21 @@ namespace MyMVCProj.Controllers
             handler.userTransPage(openId, pageName);
         }
 
+        public void saveFormSubmit(string openId,string formId)
+        {
+            new UserHandler().saveFormSubmit(openId, formId);
+        }
+
+        public JsonResult needToShowMask(string openId)
+        {
+            int result = new UserHandler().needToShowMask(openId);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void updateSelfIntro(string openId,string selfIntro)
+        {
+            new UserHandler().updateSelfIntro(openId, selfIntro);
+        }
+
     }
 }

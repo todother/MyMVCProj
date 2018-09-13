@@ -38,7 +38,7 @@ namespace CatsProj.DAL.Providers
 			return result;
 		}*/
 
-        public List<PostsPics> getPosts(string openId, int from, int count, int orderby, DateTime refreshTime)
+        public List<PostsPics> getPosts(string openId, int from, int count, int orderby, DateTime refreshTime,int currSel)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace CatsProj.DAL.Providers
                                                 .Select((po, pp, ur) => new PostsPics
                                                 {
                                                     postsID = po.postsID,
-                                                    postsContent = po.postsContent,
+                                                    postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
                                                     postsPics = pp.picPath,
                                                     postsMaker = ur.nickName,
                                                     postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID).Count(),
@@ -66,22 +66,27 @@ namespace CatsProj.DAL.Providers
                                                     openId = ur.openid,
                                                     picIndex = pp.picIndex,
                                                     postsType = po.postsType,
-                                                    ifOfficial = po.ifOfficial
+                                                    ifOfficial = po.ifOfficial,
+                                                    picsRate=pp.picsRate,
+                                                    makerPhoto=ur.avantarUrl,
+                                                    ifUserLoved=SqlFunc.Subqueryable<tbl_userloved>().Where(tl=>tl.postsID==po.postsID && tl.userID==openId).Count()
 
                                                 }).Where(pp => pp.picIndex == 0);
                 List<string> followeds = new List<string>();
                 followeds = db.Queryable<tbl_userFollowed>().Where(o => o.userId == openId).Select(o => o.followedUser).ToList();
-                if (config.byTime == 1)
+                if (currSel == 1)
                 {
                     postsList = postsList.Where(po => po.postsStatus != 1 || po.ifOfficial == 1).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc);
                 }
-                if (config.byViewed == 1)
+                if (currSel == 3)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1 || po.ifOfficial == 1).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc);
+                    postsList = postsList.Where(po => po.postsStatus != 1 || po.ifOfficial == 1).OrderBy(po => po.ifOfficial, OrderByType.Desc)
+                        .OrderBy(po => SqlFunc.IIF(po.postsMakeDate.Value.AddMinutes(30) >= DateTime.Now, 1, 0), OrderByType.Desc)
+                        .OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc);
                 }
-                if (config.onlyLoved == 1)
+                if (currSel == 2)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc);
+                    postsList = postsList.Where(po => po.postsStatus != 1).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po=>po.postsMakeDate,OrderByType.Desc);
                 }
                 if (config.onlyVerify == 1)
                 {
@@ -769,6 +774,40 @@ namespace CatsProj.DAL.Providers
             SqlSugarClient db = SqlSugarInstance.newInstance();
             long repliesCount = db.Queryable<tbl_reply>().Where(o => o.postsID == postsId).Count();
             return repliesCount;
+        }
+
+        public long saveShareCode(string postsId,string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_sharecode code = new tbl_sharecode();
+            code.openId = openId;
+            code.postsId = postsId;
+            code.shareTime = DateTime.Now;
+            long shareId = db.Insertable<tbl_sharecode>(code).ExecuteReturnBigIdentity();
+            return shareId;
+        }
+
+        public tbl_sharecode getShareCodeRecord(string shareId)
+        {
+            long shareIdLong = Convert.ToInt64(shareId);
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_sharecode result = db.Queryable<tbl_sharecode>().Where(o => o.shareId == shareIdLong).First();
+            return result;
+        }
+
+        public List<tbl_event> getEventList()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<tbl_event> eventList = new List<tbl_event>();
+            eventList = db.Queryable<tbl_event>().OrderBy(o => o.eventIndex).ToList();
+            return eventList;
+        }
+
+        public long getShareCount(string postsId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            long result = db.Queryable<tbl_userShare>().Where(o => o.postsId == postsId).Count() + db.Queryable<tbl_sharecode>().Where(o => o.postsId == postsId).Count();
+            return result;
         }
     }
 }

@@ -48,5 +48,6 @@ namespace CatsDataEntity
         /// </summary>           
         public string picSimpPath { get; set; }
 
+        public decimal picsRate { get; set; }
     }
 }

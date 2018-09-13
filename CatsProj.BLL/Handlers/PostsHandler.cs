@@ -13,6 +13,7 @@ using System.IO;
 using System.Web;
 using System.Text;
 using System.Collections.Specialized;
+using System.Drawing;
 
 namespace CatsProj.BLL.Handlers
 {
@@ -61,6 +62,39 @@ namespace CatsProj.BLL.Handlers
             }
         }
 
+        public string getQRCode(string openId,string postsId)
+        {
+
+            string token = new TokenProvider().getToken();
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + token);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            long shareId = new PostsProvider().saveShareCode(postsId, openId);
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"scene\":\"id=" + shareId + "\",\"page\":\"\"}";
+
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    var result = streamReader.ReadToEnd();
+            //    
+            //    return result;
+            //}
+            Image qrcode = Image.FromStream(httpResponse.GetResponseStream());
+            if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/qrCode")))
+            {
+                Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/qrCode"));
+            }
+            qrcode.Save(HttpContext.Current.Server.MapPath("~/qrCode/" + shareId.ToString() + ".jpeg"));
+            return "/qrCode/" + shareId.ToString() + ".jpeg";
+        }
+
         public bool ifValidContent(string postsContent)
         {
             string result = generateCMD(postsContent);
@@ -80,16 +114,20 @@ namespace CatsProj.BLL.Handlers
             public string content { get; set; }
         }
 
-        public List<PostsModel> getPosts(string openId,int from,int count,DateTime refreshTime)
+        public List<PostsModel> getPosts(string openId,int from,int count,DateTime refreshTime,int currSel)
 		{
 			PostsProvider provider = new PostsProvider();
 			IList<PostsPics> pics = new List<PostsPics>();
-			pics = provider.getPosts(openId,from, count, 1,refreshTime);
+			pics = provider.getPosts(openId,from, count, 1,refreshTime,currSel);
 			List<PostsModel> result = new List<PostsModel>();
 
             foreach(var item in pics)
 			{
-				result.Add(PostsConverter.postsEntityToModel(item));
+                if (item.postsContent.Length == 20)
+                {
+                    item.postsContent = item.postsContent + "...";
+                }
+                result.Add(PostsConverter.postsEntityToModel(item));
 			}
 			return result;
 		}
@@ -147,6 +185,7 @@ namespace CatsProj.BLL.Handlers
 			List<PostsModel> result = new List<PostsModel>();
 			foreach (var item in posts)
             {
+                
                 result.Add(PostsConverter.postsEntityToModel(item));
             }
 			PostsModel model = new PostsModel();
@@ -450,5 +489,33 @@ namespace CatsProj.BLL.Handlers
         {
             new PostsProvider().sharePosts(openId, postsId);
         }
+
+        public string getPostsIdFromQRCode(string shareId)
+        {
+            PostsProvider provider = new PostsProvider();
+            tbl_sharecode sharecode = provider.getShareCodeRecord(shareId);
+            return sharecode.postsId;
+
+        }
+
+        public List<EventModel> getEventsList()
+        {
+            List<tbl_event> eventList = new PostsProvider().getEventList();
+            List<EventModel> modelList = new List<EventModel>();
+            foreach (var item in eventList)
+            {
+                modelList.Add(EventConverter.entityToModel(item));
+            }
+            return modelList;
+        }
+
+        public string getShareCount(string postsId)
+        {
+            long result = new PostsProvider().getShareCount(postsId);
+            string strResult = formatnumber(result);
+            return strResult;
+        }
+
+        
     }
 }

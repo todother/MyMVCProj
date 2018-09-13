@@ -52,5 +52,8 @@ namespace CatsPrj.Model
 		public string language { get; set; }
 
 		public watermark watermark { get; set; }
+
+        public string selfIntro { get; set; }
+        public long totalScore { get; set; }
     }
 }

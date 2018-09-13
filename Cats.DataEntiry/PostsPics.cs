@@ -92,5 +92,9 @@ namespace Cats.DataEntiry
         public string postsLocation { get; set; }
         public string postsType { get; set; }
         public int ifOfficial { get; set; }
+
+        public decimal picsRate { get; set; }
+        public int ifNewPost { get; set; }
+        public int ifUserLoved { get; set; }
     }
 }

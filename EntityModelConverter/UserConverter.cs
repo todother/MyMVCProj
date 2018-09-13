@@ -33,6 +33,8 @@ namespace EntityModelConverter
 			model.openId = entity.openid;
 			model.language = entity.language;
 			model.province = entity.province;
+            model.selfIntro = entity.selfIntro;
+            model.totalScore = entity.totalScore;
 			return model;
 		}
      }

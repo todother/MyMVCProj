@@ -59,3 +59,5 @@ E:\MyMVCProj\MyMVCProj\CatsProj.BLL\obj\Debug\CatsProj.BLL.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.BLL\obj\Debug\CatsProj.BLL.pdb
 E:\MyMVCProj\MyMVCProj\CatsProj.BLL\bin\Debug\Magick.NET-Q16-AnyCPU.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.BLL\bin\Debug\Magick.NET-Q16-AnyCPU.xml
+E:\MyMVCProj\MyMVCProj\CatsProj.BLL\bin\Debug\NAudio.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.BLL\bin\Debug\NAudio.xml

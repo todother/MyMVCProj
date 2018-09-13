@@ -193,7 +193,6 @@ namespace CatsProj.BLL.Handler
             {
                 return result;
             }
-
         }
 
         public List<UserModel> getScoreUsers(int count)
@@ -281,6 +280,26 @@ namespace CatsProj.BLL.Handler
         {
             UserProvider provider = new UserProvider();
             provider.userTransPage(openId, pageName);
+        }
+
+        public void saveFormSubmit(string openId,string formId)
+        {
+            new UserProvider().saveFormSubmit(openId, formId);
+        }
+
+        public int needToShowMask(string openId)
+        {
+            return new UserProvider().needToShowMask(openId);
+        }
+
+        public long getLovedCount(string openId)
+        {
+            return new UserProvider().getLovedCount(openId);
+        }
+
+        public void updateSelfIntro(string openId,string selfIntro)
+        {
+            new UserProvider().updateSelfIntro(openId, selfIntro);
         }
     }
 }

@@ -29,6 +29,8 @@ namespace EntityModelConverter
             posts.postsType = entity.postsType;
             posts.postsStatus = entity.postsStatus.Value;
             posts.ifOfficial = entity.ifOfficial;
+            posts.picsRate = entity.picsRate;
+            posts.ifUserLoved = entity.ifUserLoved>0;
 			return posts;
 		}
 

@@ -74,7 +74,7 @@ namespace CatsProj.DAL.Providers
                         }
                     }
 
-                    db.Insertable<tbl_userConfig>(new tbl_userConfig { userId = user.openid, byTime = 1, byViewed = 0, onlyLoved = 0, onlyVerify = 0, videoMuted = 1 }).ExecuteCommand();
+                    db.Insertable<tbl_userConfig>(new tbl_userConfig { userId = user.openid, byTime = 0, byViewed = 1, onlyLoved = 0, onlyVerify = 0, videoMuted = 1 }).ExecuteCommand();
                 }
             }
             catch (Exception e)
@@ -349,6 +349,52 @@ namespace CatsProj.DAL.Providers
             transpage.transId = Guid.NewGuid().ToString();
             transpage.transTime = DateTime.Now;
             db.Insertable<tbl_transpage>(transpage).ExecuteCommand();
+        }
+
+        public void saveFormSubmit(string openId,string formId)
+        {
+            tbl_welcomeform welcomeForm = new tbl_welcomeform();
+            welcomeForm.formId = formId;
+            welcomeForm.openId = openId;
+            welcomeForm.welcomeId = Guid.NewGuid().ToString();
+            welcomeForm.submitTime = DateTime.Now;
+
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            db.Insertable<tbl_welcomeform>(welcomeForm).ExecuteCommand();
+        }
+
+        public int needToShowMask(string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_welcomeform form = db.Queryable<tbl_welcomeform>().Where(o => o.openId == openId).OrderBy(o => o.submitTime, OrderByType.Desc).First();
+            if(form==null)
+            {
+                return 0;
+            }
+            else if (form.submitTime.AddDays(6)<=DateTime.Now)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+
+        public long getLovedCount(string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            string[] tpList = db.Queryable<tbl_posts>().Where(o => o.postsMaker == openId).Select(o=>o.postsID).ToList().ToArray();
+            long postsLoved = db.Queryable<tbl_userloved>().Where(o => SqlFunc.ContainsArray<string>(tpList, o.postsID)).Count();
+            return postsLoved;
+        }
+
+        public void updateSelfIntro(string openId,string selfIntro)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == openId).First();
+            user.selfIntro = selfIntro;
+            db.Updateable<tbl_user>(user).Where(o => o.openid == openId).ExecuteCommand();
         }
     }
 }

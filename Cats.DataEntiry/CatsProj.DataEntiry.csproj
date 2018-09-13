@@ -31,6 +31,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="tbl_event.cs" />
+    <Compile Include="tbl_picEffect.cs" />
+    <Compile Include="tbl_sharecode.cs" />
     <Compile Include="tbl_transpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tbl_coverPage.cs" />
@@ -45,6 +48,7 @@
     <Compile Include="PostsPics.cs" />
     <Compile Include="tbl_userShare.cs" />
     <Compile Include="tbl_userviewed.cs" />
+    <Compile Include="tbl_welcomeform.cs" />
     <Compile Include="UserReply.cs" />
     <Compile Include="tbl_userConfig.cs" />
     <Compile Include="tbl_userFollowed.cs" />

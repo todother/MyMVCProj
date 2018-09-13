@@ -89,5 +89,8 @@ namespace CatsDataEntity
 
 		public DateTime? lastRefreshFans { get; set; }
 
+        public string selfIntro { get; set; }
+
+        public long totalScore { get; set; }
     }
 }

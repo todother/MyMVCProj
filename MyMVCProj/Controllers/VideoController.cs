@@ -17,10 +17,10 @@ namespace MyMVCProj.Controllers
             return Json(new { videoId = videoId, extension=new FileInfo(name.FileName).Extension }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult saveUnprocessedVideo(string openId, HttpPostedFileWrapper name,int height,int width, double latitude, double longitude, string location,string postsContent,int ifOfficial)
+        public JsonResult saveUnprocessedVideo(string openId, HttpPostedFileWrapper name,int height,int width, double latitude, double longitude, string location,string postsContent,int ifOfficial,decimal videoDuration)
         {
             VideoHandler handler = new VideoHandler();
-            handler.saveFullVideo(openId, name, height, width,latitude,longitude,location,postsContent,ifOfficial);
+            handler.saveFullVideo(openId, name, height, width,latitude,longitude,location,postsContent,ifOfficial,videoDuration);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult saveProcessedVideo(string openId,string videoId,string extension,int height,int width,double latitude,double longitude,string location,string postsContent,int ifOfficial)

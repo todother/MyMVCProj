@@ -36,7 +36,7 @@ namespace CatsProj.BLL.Handlers
                 string cmd = "-ss " + string.Format("{0:F}", startTime <= 3 ? 0 : startTime) + " -t " + string.Format("{0:F}", (endTime - startTime) >= 10 ? 10 : (endTime - startTime)) + " -i " + tempPathfull + " -vcodec copy -acodec copy " + filePathfull + " -y";
                 process.RunCMDVedio(cmd);
             }
-            generateSimpPic(filePathfull, height, width, sthTemp);
+            generateSimpPic(filePathfull, height, width,Convert.ToDecimal( endTime-startTime), sthTemp);
             int waterMarkHeight = Math.Max(height, width) / 9;
 
             addWaterMarkImage(filePathfull, scdPathFull, waterMarkHeight, waterMarkHeight);
@@ -78,7 +78,7 @@ namespace CatsProj.BLL.Handlers
             }
         }
 
-        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent, int ifOfficial)
+        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent, int ifOfficial,decimal videoDuration)
         {
             string extension = new FileInfo(video.FileName).Extension;
             string videoId = Guid.NewGuid().ToString();
@@ -99,7 +99,7 @@ namespace CatsProj.BLL.Handlers
             //string result = process.RunCMDBKVedio(cmd);
 
 
-            simPicPath = generateSimpPic(filePathfull, height, width, sthTemp);
+            simPicPath = generateSimpPic(filePathfull, height, width,videoDuration, sthTemp);
             int waterMarkHeight = Math.Max(height, width) / 9;
 
             addWaterMarkImage(filePathfull, tempPathfull, waterMarkHeight, waterMarkHeight);
@@ -108,7 +108,7 @@ namespace CatsProj.BLL.Handlers
             string postsId = Guid.NewGuid().ToString();
             handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, postsType, ifOfficial);
             PicsHandler picsHandler = new PicsHandler();
-            picsHandler.saveVideoPics(postsId, openId, "/video/" + sthTemp + extension, "/images/simple/" + sthTemp + ".jpg", sthTemp);
+            picsHandler.saveVideoPics(postsId, openId, "/video/" + sthTemp + extension, "/images/simple/" + sthTemp + ".gif", sthTemp);
             File.Delete(filePathfull);
         }
 
@@ -120,10 +120,10 @@ namespace CatsProj.BLL.Handlers
             string filePathfull = HttpContext.Current.Server.MapPath("~/video/" + videoId + extension);
             string simPicPath = HttpContext.Current.Server.MapPath("~/images/simple/" + videoId + ".jpg");
             PicsHandler picsHandler = new PicsHandler();
-            picsHandler.saveVideoPics(postsId, openId, "/video/" + videoId + extension, "/images/simple/" + videoId + ".jpg", videoId);
+            picsHandler.saveVideoPics(postsId, openId, "/video/" + videoId + extension, "/images/simple/" + videoId + ".gif", videoId);
         }
 
-        public string generateSimpPic(string videoPath, int height, int width, string videoId = "")
+        public string generateSimpPic(string videoPath, int height, int width, decimal duration, string videoId = "")
         {
             using (RunProcess process = new RunProcess())
             {
@@ -140,7 +140,19 @@ namespace CatsProj.BLL.Handlers
                 process.RunCMDVedio(cmd);
                 Image resImg = addPlayIcon(simPicPath);
                 resImg.Save(simPicPath);
-                return simPicPath;
+                string simGifPath = simPicPath.Replace(".jpg", ".gif");
+                if (duration > 2.5M)
+                {
+                    cmd = "-ss 0 -t 2.5 -i " + videoPath + " -r 10 -s 300x" + Convert.ToInt32(Convert.ToDecimal(height) / Convert.ToDecimal(width) * 300).ToString()+" -f gif " + simGifPath;
+
+                }
+                else
+                {
+                    cmd = "-ss 0 -t "+ duration .ToString()+ " -i " + videoPath + " -r 10 -s 300x" + Convert.ToInt32(Convert.ToDecimal(height) /Convert.ToDecimal( width) * 300).ToString() + " -f gif " + simGifPath + "  -y";
+                }
+                process.RunCMDVedio(cmd);
+
+                return simGifPath;
             }
         }
 

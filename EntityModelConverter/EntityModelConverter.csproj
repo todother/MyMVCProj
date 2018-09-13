@@ -31,7 +31,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventConverter.cs" />
+    <Compile Include="PicEffectConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShareCodeConverter.cs" />
     <Compile Include="UserConverter.cs" />
     <Compile Include="PostsConverter.cs" />
     <Compile Include="PicsConverter.cs" />

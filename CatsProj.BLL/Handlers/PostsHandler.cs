@@ -19,7 +19,7 @@ namespace CatsProj.BLL.Handlers
 {
     public class PostsHandler
     {
-        public bool savePosts(string postsMaker,string postsContent,int picsCount,string postsId,double latitude,double longitude,string location,string postsType,int ifOfficial)
+        public bool savePosts(string postsMaker,string postsContent,int picsCount,string postsId,double latitude,double longitude,string location,string postsType,int ifOfficial,int ifLY)
 		{
 			PostsModel model = new PostsModel();
 			model.postsMaker = postsMaker;
@@ -32,6 +32,7 @@ namespace CatsProj.BLL.Handlers
             model.postsLocation = location;
             model.postsType = postsType;
             model.ifOfficial = ifOfficial;
+            model.ifLY = ifLY;
 			tbl_posts posts =  PostsConverter.postsModelToEntity(model);
 			PostsProvider provider = new PostsProvider();
             provider.savePosts(posts);
@@ -73,6 +74,8 @@ namespace CatsProj.BLL.Handlers
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = "{\"scene\":\"id=" + shareId + "\",\"page\":\"\"}";
+                var obj = new { scene = "id=" + shareId, page = "", is_hyaline = true };
+                json = JsonConvert.SerializeObject(obj);
 
                 streamWriter.Write(json);
                 streamWriter.Flush();
@@ -114,11 +117,11 @@ namespace CatsProj.BLL.Handlers
             public string content { get; set; }
         }
 
-        public List<PostsModel> getPosts(string openId,int from,int count,DateTime refreshTime,int currSel)
+        public List<PostsModel> getPosts(string openId,int from,int count,DateTime refreshTime,int currSel, double lati, double longti)
 		{
 			PostsProvider provider = new PostsProvider();
 			IList<PostsPics> pics = new List<PostsPics>();
-			pics = provider.getPosts(openId,from, count, 1,refreshTime,currSel);
+			pics = provider.getPosts(openId,from, count, 1,refreshTime,currSel,lati,longti);
 			List<PostsModel> result = new List<PostsModel>();
 
             foreach(var item in pics)

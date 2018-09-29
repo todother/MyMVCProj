@@ -40,5 +40,25 @@ namespace CatsProj.DAL.Providers
             effects = db.Queryable<tbl_picEffect>().OrderBy(o=>o.effectIndex).ToList();
             return effects;
         }
+
+        public tbl_posterlayout getRandomLayout()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<tbl_posterlayout> layouts = db.Queryable<tbl_posterlayout>().ToList();
+            int length = layouts.Count;
+            int rand = new Random().Next(0, length);
+            
+            return layouts[rand];
+        }
+
+        public tbl_posterContent getRandContent()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<tbl_posterContent> layouts = db.Queryable<tbl_posterContent>().ToList();
+            int length = layouts.Count;
+            int rand = new Random().Next(0, length);
+
+            return layouts[rand];
+        }
     }
 }

@@ -38,7 +38,12 @@ namespace CatsProj.DAL.Providers
 			return result;
 		}*/
 
-        public List<PostsPics> getPosts(string openId, int from, int count, int orderby, DateTime refreshTime,int currSel)
+        public int calcDistance(double pla, double plo,double ula,double ulo)
+        {
+            return Convert.ToInt32( Math.Floor( Math.Sqrt(Math.Pow(pla-ula,2)+Math.Pow(plo-ulo,2))));
+        }
+
+        public List<PostsPics> getPosts(string openId, int from, int count, int orderby, DateTime refreshTime,int currSel,double lati,double longti)
         {
             try
             {
@@ -55,7 +60,7 @@ namespace CatsProj.DAL.Providers
                                                     postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
                                                     postsPics = pp.picPath,
                                                     postsMaker = ur.nickName,
-                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID).Count(),
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID&&tl.loveStatus==1).Count(),
                                                     postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
                                                     postsStatus = po.postsStatus,
                                                     postsMakeDate = po.postsMakeDate,
@@ -69,25 +74,29 @@ namespace CatsProj.DAL.Providers
                                                     ifOfficial = po.ifOfficial,
                                                     picsRate=pp.picsRate,
                                                     makerPhoto=ur.avantarUrl,
-                                                    ifUserLoved=SqlFunc.Subqueryable<tbl_userloved>().Where(tl=>tl.postsID==po.postsID && tl.userID==openId).Count()
+                                                    ifUserLoved=SqlFunc.Subqueryable<tbl_userloved>().Where(tl=>tl.postsID==po.postsID && tl.userID==openId && tl.loveStatus==1).Count()
 
                                                 }).Where(pp => pp.picIndex == 0);
                 List<string> followeds = new List<string>();
                 followeds = db.Queryable<tbl_userFollowed>().Where(o => o.userId == openId).Select(o => o.followedUser).ToList();
                 if (currSel == 1)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1 || po.ifOfficial == 1).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc);
+                    postsList = postsList.Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).Where(po=>po.ifLY!=1 || !SqlFunc.HasValue(po.ifLY)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc);
                 }
-                if (currSel == 3)
+                else if (currSel == 3)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1 || po.ifOfficial == 1).OrderBy(po => po.ifOfficial, OrderByType.Desc)
-                        .OrderBy(po => SqlFunc.IIF(po.postsMakeDate.Value.AddMinutes(30) >= DateTime.Now, 1, 0), OrderByType.Desc)
+                    postsList = postsList.Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).OrderBy(po => po.ifOfficial, OrderByType.Desc)
                         .OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc);
                 }
-                if (currSel == 2)
+                else if (currSel == 2)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po=>po.postsMakeDate,OrderByType.Desc);
+                    postsList = postsList.Where(po => po.postsStatus != 1).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po=>po.postsMakeDate,OrderByType.Desc);
                 }
+                else if (currSel == 4)
+                {
+                    postsList = postsList.Where(po => po.postsStatus != 1 && po.ifLY == 1).OrderBy(po => calcDistance(po.latitude, po.longitude, lati, longti));
+                }
+
                 if (config.onlyVerify == 1)
                 {
                     postsList = postsList.Where(po => po.postsStatus == 1).OrderBy(po => po.postsMakeDate, OrderByType.Desc);

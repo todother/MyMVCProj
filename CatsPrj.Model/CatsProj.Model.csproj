@@ -33,6 +33,8 @@
   <ItemGroup>
     <Compile Include="EventModel.cs" />
     <Compile Include="PicEffectModel.cs" />
+    <Compile Include="PosterContentModel.cs" />
+    <Compile Include="PosterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyAfterReplyModel.cs" />
     <Compile Include="ShareCode.cs" />

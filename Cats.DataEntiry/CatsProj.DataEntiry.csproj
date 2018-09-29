@@ -33,6 +33,8 @@
   <ItemGroup>
     <Compile Include="tbl_event.cs" />
     <Compile Include="tbl_picEffect.cs" />
+    <Compile Include="tbl_posterContent.cs" />
+    <Compile Include="tbl_posterlayout.cs" />
     <Compile Include="tbl_sharecode.cs" />
     <Compile Include="tbl_transpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

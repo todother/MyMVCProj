@@ -360,6 +360,7 @@ namespace CatsProj.BLL.Handlers
                         }
                     }
                 destImg.Save(tempEffects + filter.effectName + ".jpg");
+                CompressImage(tempEffects + filter.effectName + ".jpg", tempEffects + filter.effectName + ".jpg");
                 destImg.Dispose();
             }
             //fileId = Guid.NewGuid().ToString();
@@ -678,6 +679,16 @@ namespace CatsProj.BLL.Handlers
                 iSource.Dispose();
                 ob.Dispose();
             }
+        }
+
+        public PosterModel getPosterLayout()
+        {
+            return PosterConverter.convertEntityToModel(new PicsProvider().getRandomLayout());
+        }
+
+        public PosterContentModel getPosterContent()
+        {
+            return PosterConverter.converContentToModel(new PicsProvider().getRandContent());
         }
     }
 }

@@ -78,7 +78,7 @@ namespace CatsProj.BLL.Handlers
             }
         }
 
-        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent, int ifOfficial,decimal videoDuration)
+        public void saveFullVideo(string openId, HttpPostedFileWrapper video, int height, int width, double latitude, double longitude, string location, string postsContent, int ifOfficial,decimal videoDuration,int ifLY)
         {
             string extension = new FileInfo(video.FileName).Extension;
             string videoId = Guid.NewGuid().ToString();
@@ -106,17 +106,17 @@ namespace CatsProj.BLL.Handlers
             string postsType = "V";
             PostsHandler handler = new PostsHandler();
             string postsId = Guid.NewGuid().ToString();
-            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, postsType, ifOfficial);
+            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, postsType, ifOfficial,ifLY);
             PicsHandler picsHandler = new PicsHandler();
             picsHandler.saveVideoPics(postsId, openId, "/video/" + sthTemp + extension, "/images/simple/" + sthTemp + ".gif", sthTemp);
             File.Delete(filePathfull);
         }
 
-        public void saveProcessedVideo(string openId, string videoId, double latitude, double longitude, string location, string postsContent, string extension, int ifOfficial)
+        public void saveProcessedVideo(string openId, string videoId, double latitude, double longitude, string location, string postsContent, string extension, int ifOfficial,int ifLY)
         {
             PostsHandler handler = new PostsHandler();
             string postsId = Guid.NewGuid().ToString();
-            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, "V", ifOfficial);
+            handler.savePosts(openId, postsContent, 1, postsId, latitude, longitude, location, "V", ifOfficial,ifLY);
             string filePathfull = HttpContext.Current.Server.MapPath("~/video/" + videoId + extension);
             string simPicPath = HttpContext.Current.Server.MapPath("~/images/simple/" + videoId + ".jpg");
             PicsHandler picsHandler = new PicsHandler();

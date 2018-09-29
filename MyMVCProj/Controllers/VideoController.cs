@@ -17,16 +17,16 @@ namespace MyMVCProj.Controllers
             return Json(new { videoId = videoId, extension=new FileInfo(name.FileName).Extension }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult saveUnprocessedVideo(string openId, HttpPostedFileWrapper name,int height,int width, double latitude, double longitude, string location,string postsContent,int ifOfficial,decimal videoDuration)
+        public JsonResult saveUnprocessedVideo(string openId, HttpPostedFileWrapper name,int height,int width, double latitude, double longitude, string location,string postsContent,int ifOfficial,decimal videoDuration,int ifLY)
         {
             VideoHandler handler = new VideoHandler();
-            handler.saveFullVideo(openId, name, height, width,latitude,longitude,location,postsContent,ifOfficial,videoDuration);
+            handler.saveFullVideo(openId, name, height, width,latitude,longitude,location,postsContent,ifOfficial,videoDuration,ifLY);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult saveProcessedVideo(string openId,string videoId,string extension,int height,int width,double latitude,double longitude,string location,string postsContent,int ifOfficial)
+        public JsonResult saveProcessedVideo(string openId,string videoId,string extension,int height,int width,double latitude,double longitude,string location,string postsContent,int ifOfficial,int ifLY)
         {
             VideoHandler handler = new VideoHandler();
-            handler.saveProcessedVideo(openId, videoId, latitude, longitude, location, postsContent, extension,ifOfficial);
+            handler.saveProcessedVideo(openId, videoId, latitude, longitude, location, postsContent, extension,ifOfficial,ifLY);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
     }

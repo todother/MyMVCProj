@@ -93,6 +93,7 @@ namespace Cats.DataEntiry
         public string postsType { get; set; }
         public int ifOfficial { get; set; }
 
+        public int ifLY { get; set; }
         public decimal picsRate { get; set; }
         public int ifNewPost { get; set; }
         public int ifUserLoved { get; set; }

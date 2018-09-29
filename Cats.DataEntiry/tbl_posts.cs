@@ -89,6 +89,6 @@ namespace CatsDataEntity
         public string postsLocation { get; set; }
         public string postsType { get; set; }
         public int ifOfficial { get; set; }
-
+        public int ifLY { get; set; }
     }
 }

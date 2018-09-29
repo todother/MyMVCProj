@@ -52,5 +52,12 @@ namespace MyMVCProj.Controllers
         {
             new PicsHandler().generateFilters();
         }
+
+        public JsonResult getPosterInfo()
+        {
+            PosterModel layout = new PicsHandler().getPosterLayout();
+            PosterContentModel content = new PicsHandler().getPosterContent();
+            return Json(new { layout = layout, content = content }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

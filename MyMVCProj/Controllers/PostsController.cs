@@ -11,19 +11,19 @@ namespace MyMVCProj.Controllers
 {
     public class PostsController : Controller
     {
-		public JsonResult savePosts(string postsMaker,string postsContent,int picsCount,double longitude, double latitude, string location,int ifOfficial)
+		public JsonResult savePosts(string postsMaker,string postsContent,int picsCount,double longitude, double latitude, string location,int ifOfficial,int ifLY)
 		{
 			string postsId = Guid.NewGuid().ToString();
 			PostsHandler handler=new PostsHandler();
-			bool succ=handler.savePosts(postsMaker,postsContent,picsCount,postsId, latitude, longitude, location,"P",ifOfficial);
+			bool succ=handler.savePosts(postsMaker,postsContent,picsCount,postsId, latitude, longitude, location,"P",ifOfficial,ifLY);
 			return Json(new { result = postsId,ifSucc=succ }, JsonRequestBehavior.AllowGet);
 		}
 
-        public JsonResult getPosts(string openId, int dataFrom, int count, DateTime refreshTime,int currentSel)
+        public JsonResult getPosts(string openId, int dataFrom, int count, DateTime refreshTime,int currentSel,double ulo,double ula)
 		{
 			PostsHandler handler = new PostsHandler();
 			List<PostsModel> list = new List<PostsModel>();
-			list = handler.getPosts(openId,dataFrom, count,refreshTime, currentSel);
+			list = handler.getPosts(openId,dataFrom, count,refreshTime, currentSel, ula, ulo);
 			return Json(new {result=list},JsonRequestBehavior.AllowGet);
 		}
 

@@ -31,6 +31,7 @@ namespace EntityModelConverter
             posts.ifOfficial = entity.ifOfficial;
             posts.picsRate = entity.picsRate;
             posts.ifUserLoved = entity.ifUserLoved>0;
+            posts.ifLY = entity.ifLY;
 			return posts;
 		}
 
@@ -52,6 +53,7 @@ namespace EntityModelConverter
             entity.postsLocation = model.postsLocation;
             entity.postsType = model.postsType;
             entity.ifOfficial = model.ifOfficial;
+            entity.ifLY = model.ifLY;
 			return entity;
 		}
 

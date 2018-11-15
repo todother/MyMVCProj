@@ -31,11 +31,26 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyMission.cs" />
+    <Compile Include="tbl_commondesc.cs" />
+    <Compile Include="tbl_dailyMission.cs" />
     <Compile Include="tbl_event.cs" />
+    <Compile Include="tbl_log.cs" />
+    <Compile Include="tbl_missionConfig.cs" />
     <Compile Include="tbl_picEffect.cs" />
+    <Compile Include="tbl_pointConfig.cs" />
     <Compile Include="tbl_posterContent.cs" />
     <Compile Include="tbl_posterlayout.cs" />
+    <Compile Include="tbl_qdRecord.cs" />
+    <Compile Include="tbl_robot.cs" />
+    <Compile Include="tbl_robotContent.cs" />
+    <Compile Include="tbl_robotReply.cs" />
     <Compile Include="tbl_sharecode.cs" />
+    <Compile Include="tbl_solveQuestion.cs" />
+    <Compile Include="tbl_surveyanalysis.cs" />
+    <Compile Include="tbl_surveyQuestion.cs" />
+    <Compile Include="tbl_tcmPoints.cs" />
+    <Compile Include="tbl_tcmQuestion.cs" />
     <Compile Include="tbl_transpage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tbl_coverPage.cs" />

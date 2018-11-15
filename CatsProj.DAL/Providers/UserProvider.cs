@@ -18,7 +18,7 @@ namespace CatsProj.DAL.Providers
             return result;
         }
 
-        public void newOrUpdateUser(tbl_user user)
+        public void newOrUpdateUser(tbl_user user,string refer)
         {
             try
             {
@@ -43,6 +43,7 @@ namespace CatsProj.DAL.Providers
                 }
                 else
                 {
+                    user.referBy = refer;
                     user.registerDate = DateTime.Now;
                     user.lastRefreshDate = DateTime.Now;
                     user.lastRefreshFans = DateTime.Now;
@@ -395,6 +396,25 @@ namespace CatsProj.DAL.Providers
             tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == openId).First();
             user.selfIntro = selfIntro;
             db.Updateable<tbl_user>(user).Where(o => o.openid == openId).ExecuteCommand();
+        }
+
+        public tbl_user getRobotUser()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_user user = db.Queryable<tbl_user>().Where(o => o.ifRobot==1).OrderBy(o=>getRand()).First();
+            return user;
+        }
+
+        public int getRand()
+        {
+            return 0;
+        }
+
+        public List<tbl_user> getRobotUsers()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<tbl_user> robots = db.Queryable<tbl_user>().Where(o => o.ifRobot == 1).ToList();
+            return robots;
         }
     }
 }

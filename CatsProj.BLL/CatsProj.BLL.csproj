@@ -48,6 +48,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\JFHandler.cs" />
+    <Compile Include="Handlers\RobotHandler.cs" />
+    <Compile Include="Handlers\SurveyHandler.cs" />
     <Compile Include="Handlers\TokenHandler.cs" />
     <Compile Include="Handlers\UserHandler.cs" />
     <Compile Include="Handlers\PicsHandler.cs" />
@@ -67,6 +70,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web">
       <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.10.1\lib\mono\4.7.1-api\System.Web.dll</HintPath>

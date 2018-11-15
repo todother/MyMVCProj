@@ -13,6 +13,7 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\CatsProj.DB.dll.config
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\CatsProj.DB.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\CatsProj.DB.pdb
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\CatsProj.Tools.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\MySql.Data.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\SqlSugar.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\CatsProj.Tools.pdb
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.csprojAssemblyReference.cache
@@ -20,4 +21,3 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.csproj.CoreCompileInput
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.pdb
-E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\MySql.Data.dll

@@ -15,42 +15,45 @@ using System.Text;
 using CatsProj.Tools;
 using Newtonsoft.Json;
 using Cats.DataEntiry;
+using System.Web.Configuration;
 
 namespace CatsProj.BLL.Handlers
 {
     public class PicsHandler
     {
-        public string savePics(HttpPostedFileWrapper name, string postsId, int idx)
+        public string savePics(Stream name, string postsId, int idx)
         {
             try
             {
-
+                //Stream picStream = name.InputStream;
                 Guid id = Guid.NewGuid();
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images")))
-                {
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images"));
-                }
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images/original")))
-                {
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images/original"));
-                }
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images/simple")))
-                {
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images/simple"));
-                }
+                string origPath = WebConfigurationManager.AppSettings["origPath"];
+                string simpPath = WebConfigurationManager.AppSettings["simpPath"];
+                //if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images")))
+                //{
+                //    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images"));
+                //}
+                //if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images/original")))
+                //{
+                //    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images/original"));
+                //}
+                //if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/images/simple")))
+                //{
+                //    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/images/simple"));
+                //}
                 tbl_posts posts = new tbl_posts();
                 posts = new PostsProvider().getPost(postsId);
                 string openId = posts.postsMaker;
                 tbl_user user = new UserProvider().getUserInfo(openId);
                 string fiePath = "/images/original/" + id.ToString() + ".jpg";
                 string waterMark = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes("微信小程序 果Jio @" + user.nickName));
-                var simpleImage = Image.FromStream(name.InputStream);
+                var simpleImage = Image.FromStream(name);
                 int width = simpleImage.Width;
                 int height = simpleImage.Height;
                 int fontsize = height / 50 <= 10 ? 10 : height / 50;
-                Image origImage = addWaterMark(name.InputStream, waterMark, 9, 0, fontsize);
+                Image origImage = addWaterMark(name, waterMark, 9, 0, fontsize);
                 double ratio = origImage.Width / origImage.Height;
-                string origFilePath = HttpContext.Current.Server.MapPath("~/images/original/" + id.ToString() + ".jpg");
+                string origFilePath = origPath + id.ToString() + ".jpg";
                 origImage.Save(origFilePath);
                 //CompressImage(origFilePath, origFilePath);
                 string simplePic = "/images/simple/" + id.ToString() + ".jpg";
@@ -70,7 +73,7 @@ namespace CatsProj.BLL.Handlers
 
 
                 Bitmap bmp = ResizeImage(simpleImage, width, height);
-                string smpFilePath = HttpContext.Current.Server.MapPath("~/images/simple/" + id.ToString() + ".jpg");
+                string smpFilePath = simpPath + id.ToString() + ".jpg";
                 bmp.Save(smpFilePath);
 
                 string returnValue = RunProcess.RunCMD(generateCMD(smpFilePath));
@@ -90,15 +93,34 @@ namespace CatsProj.BLL.Handlers
                 model.picSimpPath = simplePic;
                 if (idx == 0)
                 {
-                    model.picsRate = Convert.ToDecimal(height) / Convert.ToDecimal(width);
+                    model.picsRate = Convert.ToDecimal(height) / Convert.ToDecimal(width) >= 2 ? 2 : Convert.ToDecimal(height) / Convert.ToDecimal(width);
                 }
                 provider.savePics(PicsConverter.picsModeltoEntity(model));
                 return "true";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 int i = 0;
-                return e.Message;
+               
+
+                StringBuilder msg = new StringBuilder();
+                msg.Append("*************************************** \n");
+                msg.AppendFormat(" 异常发生时间： {0} \n", DateTime.Now);
+                msg.AppendFormat(" 异常类型： {0} \n", ex.HResult);
+                msg.AppendFormat(" 导致当前异常的 Exception 实例： {0} \n", ex.InnerException);
+                msg.AppendFormat(" 导致异常的应用程序或对象的名称： {0} \n", ex.Source);
+                msg.AppendFormat(" 引发异常的方法： {0} \n", ex.TargetSite);
+                msg.AppendFormat(" 异常堆栈信息： {0} \n", ex.StackTrace);
+                msg.AppendFormat(" 异常消息： {0} \n", ex.Message);
+                msg.Append("***************************************");
+
+                FileStream fs = new FileStream(HttpContext.Current.Server.MapPath("~/log/" + DateTime.Now.Ticks.ToString() + ".txt"), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                string error = msg.ToString();
+                byte[] buffer = Encoding.Default.GetBytes(error);
+                fs.Write(buffer, 0, buffer.Length);
+                fs.Close();
+                fs.Dispose();
+                return ex.Message;
             }
         }
 
@@ -325,9 +347,9 @@ namespace CatsProj.BLL.Handlers
 
         public void generateFilters()
         {
-           List< PicEffectModel >filters = getEffects();
+            List<PicEffectModel> filters = getEffects();
             string tempEffects = HttpContext.Current.Server.MapPath("~/filter/");
-            Image origImg = Bitmap.FromFile(tempEffects+"orig.jpg");
+            Image origImg = Bitmap.FromFile(tempEffects + "orig.jpg");
             Bitmap origBmp = new Bitmap(origImg);
             int width = origImg.Width;
             int height = origImg.Height;
@@ -338,7 +360,7 @@ namespace CatsProj.BLL.Handlers
             int currR = 0;
             int currG = 0;
             int currB = 0;
-            
+
             string filePath = "";
 
             Bitmap destImg = new Bitmap(width, height);
@@ -348,30 +370,30 @@ namespace CatsProj.BLL.Handlers
             {
 
                 destImg = new Bitmap(width, height);
-                    for (i = 0; i < width; i++)
+                for (i = 0; i < width; i++)
+                {
+                    for (j = 0; j < height; j++)
                     {
-                        for (j = 0; j < height; j++)
-                        {
-                            Color curColor = origBmp.GetPixel(i, j);
-                            currR = Convert.ToInt32(Convert.ToDouble(curColor.R * Convert.ToDouble(1 - Convert.ToDouble(filter.Rrate) / 100) + filter.R * Convert.ToDouble(filter.Rrate) / 100));
-                            currG = Convert.ToInt32(Convert.ToDouble(curColor.G * Convert.ToDouble(1 - Convert.ToDouble(filter.Grate) / 100) + filter.G * Convert.ToDouble(filter.Grate) / 100));
-                            currB = Convert.ToInt32(Convert.ToDouble(curColor.B * Convert.ToDouble(1 - Convert.ToDouble(filter.Brate) / 100) + filter.B * Convert.ToDouble(filter.Brate) / 100));
-                            destImg.SetPixel(i, j, Color.FromArgb(currR, currG, currB));
-                        }
+                        Color curColor = origBmp.GetPixel(i, j);
+                        currR = Convert.ToInt32(Convert.ToDouble(curColor.R * Convert.ToDouble(1 - Convert.ToDouble(filter.Rrate) / 100) + filter.R * Convert.ToDouble(filter.Rrate) / 100));
+                        currG = Convert.ToInt32(Convert.ToDouble(curColor.G * Convert.ToDouble(1 - Convert.ToDouble(filter.Grate) / 100) + filter.G * Convert.ToDouble(filter.Grate) / 100));
+                        currB = Convert.ToInt32(Convert.ToDouble(curColor.B * Convert.ToDouble(1 - Convert.ToDouble(filter.Brate) / 100) + filter.B * Convert.ToDouble(filter.Brate) / 100));
+                        destImg.SetPixel(i, j, Color.FromArgb(currR, currG, currB));
                     }
+                }
                 destImg.Save(tempEffects + filter.effectName + ".jpg");
                 CompressImage(tempEffects + filter.effectName + ".jpg", tempEffects + filter.effectName + ".jpg");
                 destImg.Dispose();
             }
             //fileId = Guid.NewGuid().ToString();
-            
+
             if (!Directory.Exists(tempEffects))
             {
                 Directory.CreateDirectory(tempEffects);
             }
             //destImg.Save(filePath, ImageFormat.Jpeg);
-            
-            
+
+
             origImg.Dispose();
             origBmp.Dispose();
         }
@@ -590,7 +612,7 @@ namespace CatsProj.BLL.Handlers
             stream.Dispose();
             stream.Close();
 
-            
+
             ImageFormat tFormat = iSource.RawFormat;
             //如果是第一次调用，原始图像的大小小于要压缩的大小，则直接复制文件，并且返回true
             FileInfo firstFileInfo = new FileInfo(sFile);

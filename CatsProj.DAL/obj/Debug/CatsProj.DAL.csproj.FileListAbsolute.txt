@@ -21,6 +21,7 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\CatsProj.DAL.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\CatsProj.DAL.pdb
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\Cats.DataEntiry.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\CatsProj.DB.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\MySql.Data.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\Newtonsoft.Json.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\SqlSugar.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\CatsProj.Tools.dll
@@ -34,4 +35,3 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.csproj.CoreCompileInp
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.pdb
-E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\MySql.Data.dll

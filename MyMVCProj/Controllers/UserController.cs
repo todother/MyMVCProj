@@ -1,5 +1,6 @@
 ﻿using CatsPrj.Model;
 using CatsProj.BLL.Handler;
+using CatsProj.BLL.Handlers;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -19,10 +20,10 @@ namespace MyMVCProj.Controllers
             return handler.postWebService(code);
         }
 
-        public JsonResult wxDecryptData(string sessionKey, string encryptedData, string iv)
+        public JsonResult wxDecryptData(string sessionKey, string encryptedData, string iv,string refer)
         {
             UserHandler handler = new UserHandler();
-            bool result = handler.wxDecryptData(sessionKey, encryptedData, iv);
+            bool result = handler.wxDecryptData(sessionKey, encryptedData, iv,refer);
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
             //string result = AesHelper.AESDecrypt(encryptedData, sessionKey, iv);
             //return Json(new { result = result }, JsonRequestBehavior.AllowGet);
@@ -136,6 +137,11 @@ namespace MyMVCProj.Controllers
         public void updateSelfIntro(string openId,string selfIntro)
         {
             new UserHandler().updateSelfIntro(openId, selfIntro);
+        }
+
+        public void addUser()
+        {
+            new RobotHandler().addRobotUser();
         }
 
     }

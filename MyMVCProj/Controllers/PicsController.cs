@@ -16,7 +16,7 @@ namespace MyMVCProj.Controllers
 			{
 				PicsHandler handler = new PicsHandler();
                 
-				string result= handler.savePics(name, postsId, idx);
+				string result= handler.savePics(name.InputStream, postsId, idx);
 				return Json(new { result=result }, JsonRequestBehavior.AllowGet);
 			}
             catch(Exception e)

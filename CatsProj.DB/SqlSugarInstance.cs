@@ -37,6 +37,18 @@ namespace CatsProj.DB
                     }
                 });
 
+                expMethods.Add(new SqlFuncExternal()
+                {
+                    UniqueMethodName = "getRand",
+                    MethodValue = (expInfo, dbType, expContext) =>
+                    {
+                        if (dbType == SqlSugar.DbType.MySql)
+                            return string.Format("(select rand())");
+                        else
+                            throw new Exception("未实现");
+                    }
+                });
+
                 SqlSugarClient db = new SqlSugarClient(
                     new ConnectionConfig()
                     {

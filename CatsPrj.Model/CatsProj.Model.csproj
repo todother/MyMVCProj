@@ -31,13 +31,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyMissionModel.cs" />
     <Compile Include="EventModel.cs" />
     <Compile Include="PicEffectModel.cs" />
     <Compile Include="PosterContentModel.cs" />
     <Compile Include="PosterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionModel.cs" />
     <Compile Include="ReplyAfterReplyModel.cs" />
+    <Compile Include="RobotChatModel.cs" />
     <Compile Include="ShareCode.cs" />
+    <Compile Include="TCMContent.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="PostsModel.cs" />
     <Compile Include="watermark.cs" />

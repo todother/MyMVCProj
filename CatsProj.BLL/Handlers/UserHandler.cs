@@ -35,7 +35,7 @@ namespace CatsProj.BLL.Handler
             return retXml;
         }
 
-		public bool wxDecryptData(string sessionKey,string encryptedData,string iv)
+		public bool wxDecryptData(string sessionKey,string encryptedData,string iv,string refer)
 		{
 			byte[] encryptedDataToByte = Convert.FromBase64String(encryptedData);
             byte[] aesKey = Convert.FromBase64String(sessionKey);
@@ -50,18 +50,19 @@ namespace CatsProj.BLL.Handler
             ICryptoTransform transform = rijndaelCipher.CreateDecryptor();
             byte[] plainText = transform.TransformFinalBlock(encryptedDataToByte, 0, encryptedDataToByte.Length);
             string result = Encoding.UTF8.GetString(plainText);
-			bool convertresult= userLogin(result);
+			bool convertresult= userLogin(result,refer);
 			return convertresult;// check if the userstatus is forbidened
 		}
 
-		public bool userLogin(string data)
+		public bool userLogin(string data,string refer)
 		{
 			try
 			{
 				
 				UserModel user = JsonConvert.DeserializeObject<UserModel>(parseInvalid(data));
+                
 				UserProvider provider = new UserProvider();
-				provider.newOrUpdateUser(UserConverter.userModelToEntity(user));
+				provider.newOrUpdateUser(UserConverter.userModelToEntity(user),refer);
 				tbl_user tbl_User = provider.getUser(user.openId);
 				if (tbl_User.userStatus == 1)
 				{ 

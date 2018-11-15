@@ -98,6 +98,8 @@ namespace CatsProj.BLL.Handlers
             return "/qrCode/" + shareId.ToString() + ".jpeg";
         }
 
+
+
         public bool ifValidContent(string postsContent)
         {
             string result = generateCMD(postsContent);

@@ -27,6 +27,8 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Providers\JFProvider.cs" />
+    <Compile Include="Providers\SurveyProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Providers\PostsProvider.cs" />
     <Compile Include="Providers\PicsProvider.cs" />

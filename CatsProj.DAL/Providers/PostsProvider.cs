@@ -205,8 +205,15 @@ namespace CatsProj.DAL.Providers
 
         public void savePosts(tbl_posts posts)
         {
-            SqlSugarClient db = SqlSugarInstance.newInstance();
-            db.Insertable<tbl_posts>(posts).ExecuteCommand();
+            try
+            {
+                SqlSugarClient db = SqlSugarInstance.newInstance();
+                db.Insertable<tbl_posts>(posts).ExecuteCommand();
+            }
+            catch (Exception e)
+            {
+                addLog(e.Message.ToString());
+            }
         }
 
 
@@ -817,6 +824,75 @@ namespace CatsProj.DAL.Providers
             SqlSugarClient db = SqlSugarInstance.newInstance();
             long result = db.Queryable<tbl_userShare>().Where(o => o.postsId == postsId).Count() + db.Queryable<tbl_sharecode>().Where(o => o.postsId == postsId).Count();
             return result;
+        }
+
+        public void addRobotContent(tbl_robotContent content)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            db.Insertable<tbl_robotContent>(content).ExecuteCommand();
+        }
+
+        public int getRand()
+        {
+            return 0;
+        }
+
+        public tbl_robotContent getRobotContent()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_robotContent content = db.Queryable<tbl_robotContent>().Where(o=>o.ifUsed==0).OrderBy(o => getRand()).First();
+            string contentId = content.contentId;
+            content.ifUsed = 1;
+            db.Updateable<tbl_robotContent>(content).Where(o => o.content == contentId).ExecuteCommand();
+            return content;
+        }
+
+        public void addLog(string logContent)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_log log = new tbl_log();
+            log.logId = Guid.NewGuid().ToString();
+            log.logContent = logContent;
+            log.logTime = DateTime.Now;
+            db.Insertable<tbl_log>(log).ExecuteCommand();
+        }
+
+        public void addRobotReply(tbl_robotReply reply)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            db.Insertable<tbl_robotReply>(reply).ExecuteCommand();
+        }
+
+        public tbl_robotReply getRobotReply(string type)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_robotReply reply = new tbl_robotReply();
+            if (type == "")
+            {
+                reply = db.Queryable<tbl_robotReply>().OrderBy(o => getRand()).First();
+            }
+            else
+            {
+                reply = db.Queryable<tbl_robotReply>().Where(o => o.replyType == type).OrderBy(o => getRand()).First();
+            }
+            return reply;
+            
+        }
+
+        public List<string> getPostsInLast36Hr()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<string> postsList = db.Queryable<tbl_posts>().Where(o => SqlFunc.DateAdd(o.postsMakeDate.Value, 36, DateType.Hour) > DateTime.Now).Select(o => o.postsID).ToList();
+            return postsList;
+        }
+
+        public bool ifPostedByRobot(string postsId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            tbl_posts posts = db.Queryable<tbl_posts>().Where(o => o.postsID == postsId).First();
+            string poster = posts.postsMaker;
+            tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == poster).First();
+            return user.ifRobot == 1;
         }
     }
 }

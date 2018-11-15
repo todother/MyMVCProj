@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using QuartzToken;
+using RobotQuartz;
 
 namespace MyMVCProj
 {
@@ -12,6 +13,7 @@ namespace MyMVCProj
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             TokenTrigger.Start();
+            RobotTrigger.Start();
         }
     }
 }

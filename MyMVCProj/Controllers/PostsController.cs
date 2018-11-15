@@ -204,5 +204,15 @@ namespace MyMVCProj.Controllers
             List<EventModel> result = new PostsHandler().getEventsList();
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
+
+        public void addRobotContent()
+        {
+            new RobotHandler().addRobotContent();
+        }
+
+        public void addRobotReply()
+        {
+            new RobotHandler().addRobotReply();
+        }
     }
 }

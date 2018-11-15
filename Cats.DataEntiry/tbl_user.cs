@@ -92,5 +92,9 @@ namespace CatsDataEntity
         public string selfIntro { get; set; }
 
         public long totalScore { get; set; }
+
+        public int ifRobot { get; set; }
+
+        public string referBy { get; set; }
     }
 }

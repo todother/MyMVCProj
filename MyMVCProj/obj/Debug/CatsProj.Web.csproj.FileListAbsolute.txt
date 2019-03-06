@@ -50,7 +50,6 @@ E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\Microsoft.Web.Infrastructure.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\MySql.Data.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\Newtonsoft.Json.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\QuartzToken.dll
-E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\SqlSugar.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\System.Web.Helpers.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\System.Web.Mvc.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\System.Web.Razor.dll
@@ -97,3 +96,18 @@ E:\MyMVCProj\MyMVCProj\MyMVCProj\obj\Debug\MyMVCProj.pdb
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\RobotQuartz.dll
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\RobotQuartz.pdb
 E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\RobotQuartz.dll.config
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\Google.Protobuf.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\MySql.Data.xml
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\SqlSugar.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\Emgu.CV.World.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\Emgu.CV.World.xml
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x64\concrt140.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x64\cvextern.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x64\msvcp140.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x64\opencv_ffmpeg343_64.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x64\vcruntime140.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x86\concrt140.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x86\cvextern.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x86\msvcp140.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x86\opencv_ffmpeg343.dll
+E:\MyMVCProj\MyMVCProj\MyMVCProj\bin\x86\vcruntime140.dll

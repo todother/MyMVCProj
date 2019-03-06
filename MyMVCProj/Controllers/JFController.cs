@@ -40,5 +40,16 @@ namespace MyMVCProj.Controllers
             int score = new JFHandler().getDailyScore(openId);
             return Json(new { score = score }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult getPrevScores(string openId)
+        {
+            var result = new JFHandler().getPrevScore(openId);
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public void generatePoster()
+        {
+            new JFHandler().generateThkPoster();
+        }
     }
 }

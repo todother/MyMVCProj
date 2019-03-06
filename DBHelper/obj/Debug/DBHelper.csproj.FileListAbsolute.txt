@@ -31,3 +31,5 @@ E:\MyMVCProj\MyMVCProj\DBHelper\obj\Debug\DBHelper.csproj.CoreCompileInputs.cach
 E:\MyMVCProj\MyMVCProj\DBHelper\obj\Debug\DBHelper.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\DBHelper\obj\Debug\DBHelper.exe
 E:\MyMVCProj\MyMVCProj\DBHelper\obj\Debug\DBHelper.pdb
+E:\MyMVCProj\MyMVCProj\DBHelper\bin\Debug\Google.Protobuf.dll
+E:\MyMVCProj\MyMVCProj\DBHelper\bin\Debug\MySql.Data.xml

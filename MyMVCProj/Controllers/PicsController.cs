@@ -59,5 +59,12 @@ namespace MyMVCProj.Controllers
             PosterContentModel content = new PicsHandler().getPosterContent();
             return Json(new { layout = layout, content = content }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult getCatFace(HttpPostedFileWrapper name)
+        {
+            PicsHandler handler = new PicsHandler();
+            FaceDetectModel model = handler.getFaceRange(name.InputStream);
+            return Json(new { result = model }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

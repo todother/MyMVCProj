@@ -51,7 +51,15 @@ namespace CatsProj.DAL.Providers
                 List<PostsPics> result = new List<PostsPics>();
                 tbl_userConfig config = new tbl_userConfig();
                 config = db.Queryable<tbl_userConfig>().Where(o => o.userId == openId).First();
-                var postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
+                var postsList = new List<PostsPics>();
+                List<string> followeds = new List<string>();
+                var tempPosts = new List<string>();
+                followeds = db.Queryable<tbl_userFollowed>().Where(o => o.userId == openId).Select(o => o.followedUser).ToList();
+                if (currSel == 1)
+                {
+                    //postsList = postsList;
+                    tempPosts = db.Queryable<tbl_posts>().Where(o => o.postsMakeDate <= refreshTime).OrderBy(o=>o.ifOfficial,OrderByType.Desc).OrderBy(o => o.postsMakeDate, OrderByType.Desc).Select(o => o.postsID).ToPageList(from / count + 1, count);
+                    postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
                                         JoinType.Left,po.postsID==pp.postsID,
                                         JoinType.Left,po.postsMaker==ur.openid})
                                                 .Select((po, pp, ur) => new PostsPics
@@ -60,8 +68,8 @@ namespace CatsProj.DAL.Providers
                                                     postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
                                                     postsPics = pp.picPath,
                                                     postsMaker = ur.nickName,
-                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID&&tl.loveStatus==1).Count(),
-                                                    postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.loveStatus == 1).Count(),
+                                                    //postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
                                                     postsStatus = po.postsStatus,
                                                     postsMakeDate = po.postsMakeDate,
                                                     postsPicCount = po.postsPicCount,
@@ -72,37 +80,170 @@ namespace CatsProj.DAL.Providers
                                                     picIndex = pp.picIndex,
                                                     postsType = po.postsType,
                                                     ifOfficial = po.ifOfficial,
-                                                    picsRate=pp.picsRate,
-                                                    makerPhoto=ur.avantarUrl,
-                                                    ifUserLoved=SqlFunc.Subqueryable<tbl_userloved>().Where(tl=>tl.postsID==po.postsID && tl.userID==openId && tl.loveStatus==1).Count()
+                                                    picsRate = pp.picsRate,
+                                                    makerPhoto = ur.avantarUrl,
+                                                    ifLY = po.ifLY,
+                                                    ifUserLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.userID == openId && tl.loveStatus == 1).Count()
 
-                                                }).Where(pp => pp.picIndex == 0);
-                List<string> followeds = new List<string>();
-                followeds = db.Queryable<tbl_userFollowed>().Where(o => o.userId == openId).Select(o => o.followedUser).ToList();
-                if (currSel == 1)
-                {
-                    postsList = postsList.Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).Where(po=>po.ifLY!=1 || !SqlFunc.HasValue(po.ifLY)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc);
+                                                }).Where(pp => pp.picIndex == 0).
+                                                Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).
+                                                Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).
+                                                Where(po => tempPosts.Contains(po.postsID)).
+                                                OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc).ToList();
                 }
                 else if (currSel == 3)
                 {
-                    postsList = postsList.Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).OrderBy(po => po.ifOfficial, OrderByType.Desc)
-                        .OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc);
+                    //postsList = postsList.Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).OrderBy(po => po.ifOfficial, OrderByType.Desc)
+                    //.OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc);
+                    tempPosts = db.Queryable<tbl_userloved>().Where(o => o.lovedTime >= DateTime.Now.AddDays(-3) && o.lovedTime<=refreshTime).GroupBy(o => o.postsID).Select(o=>o.postsID).ToList();
+                    tempPosts = db.Queryable<tbl_posts,tbl_userloved > ((tp,tul)=>new object[] {
+                        JoinType.Left,tp.postsID==tul.postsID
+                    }).Select((tp, tul) => new PostsPics
+                    {
+                        postsID = tp.postsID,
+                        postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tu => tu.postsID == tp.postsID && tu.lovedTime >= DateTime.Now.AddDays(-3)).Count()
+                    }).Where(tp=>tempPosts.Contains(tp.postsID)&& tp.postsMakeDate<=refreshTime).OrderBy("postsLoved desc").Select(tp => tp.postsID).ToPageList(from / count + 1, count);
+                    postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
+                                        JoinType.Left,po.postsID==pp.postsID,
+                                        JoinType.Left,po.postsMaker==ur.openid})
+                                                .Select((po, pp, ur) => new PostsPics
+                                                {
+                                                    postsID = po.postsID,
+                                                    postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
+                                                    postsPics = pp.picPath,
+                                                    postsMaker = ur.nickName,
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.loveStatus == 1).Count(),
+                                                    //postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
+                                                    postsStatus = po.postsStatus,
+                                                    postsMakeDate = po.postsMakeDate,
+                                                    postsPicCount = po.postsPicCount,
+                                                    postsReported = po.postsReported,
+                                                    postsCollected = po.postsCollected,
+                                                    picSimpPath = pp.picSimpPath,
+                                                    openId = ur.openid,
+                                                    picIndex = pp.picIndex,
+                                                    postsType = po.postsType,
+                                                    ifOfficial = po.ifOfficial,
+                                                    picsRate = pp.picsRate,
+                                                    makerPhoto = ur.avantarUrl,
+                                                    ifLY = po.ifLY,
+                                                    ifUserLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.userID == openId && tl.loveStatus == 1).Count()
+
+                                                }).Where(pp => pp.picIndex == 0).
+                                                Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).
+                                                Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).
+                                                Where(po => tempPosts.Contains(po.postsID)).
+                                                OrderBy(po => po.ifOfficial, OrderByType.Desc)
+                                                .OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc)
+                                                .ToList();
                 }
                 else if (currSel == 2)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po=>po.postsMakeDate,OrderByType.Desc);
+                    //postsList = postsList.Where(po => po.postsStatus != 1).Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).Where(ur => followeds.Contains(ur.openId)).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po=>po.postsMakeDate,OrderByType.Desc);
+                    tempPosts = db.Queryable<tbl_posts>().Where(o => followeds.Contains(o.postsMaker) && o.postsMakeDate<=refreshTime).OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc).Select(po => po.postsID).ToPageList(from / count + 1, count);
+                    postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
+                                        JoinType.Left,po.postsID==pp.postsID,
+                                        JoinType.Left,po.postsMaker==ur.openid})
+                                                .Select((po, pp, ur) => new PostsPics
+                                                {
+                                                    postsID = po.postsID,
+                                                    postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
+                                                    postsPics = pp.picPath,
+                                                    postsMaker = ur.nickName,
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.loveStatus == 1).Count(),
+                                                    //postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
+                                                    postsStatus = po.postsStatus,
+                                                    postsMakeDate = po.postsMakeDate,
+                                                    postsPicCount = po.postsPicCount,
+                                                    postsReported = po.postsReported,
+                                                    postsCollected = po.postsCollected,
+                                                    picSimpPath = pp.picSimpPath,
+                                                    openId = ur.openid,
+                                                    picIndex = pp.picIndex,
+                                                    postsType = po.postsType,
+                                                    ifOfficial = po.ifOfficial,
+                                                    picsRate = pp.picsRate,
+                                                    makerPhoto = ur.avantarUrl,
+                                                    ifLY = po.ifLY,
+                                                    ifUserLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.userID == openId && tl.loveStatus == 1).Count()
+
+                                                }).Where(pp => pp.picIndex == 0).
+                                                Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).
+                                                Where(po => po.ifLY != 1 || !SqlFunc.HasValue(po.ifLY)).
+                                                Where(po => tempPosts.Contains(po.postsID)).
+                                                OrderBy(po => po.ifOfficial, OrderByType.Desc).OrderBy(po => po.postsMakeDate, OrderByType.Desc)
+                                                //.OrderBy(po => SqlFunc.Subqueryable<tbl_userloved>().Where(o => o.postsID == po.postsID && o.lovedTime >= DateTime.Now.AddDays(-3)).Count(), OrderByType.Desc)
+                                                .ToList();
                 }
                 else if (currSel == 4)
                 {
-                    postsList = postsList.Where(po => po.postsStatus != 1 && po.ifLY == 1).OrderBy(po => calcDistance(po.latitude, po.longitude, lati, longti));
+                    //postsList = postsList.Where(po => po.postsStatus != 1 && po.ifLY == 1).OrderBy(po => calcDistance(po.latitude, po.longitude, lati, longti));
+                    tempPosts = db.Queryable<tbl_posts>().Where(o => o.ifLY == 1).Select(o => o.postsID).ToPageList(from / count + 1, count);
+                    postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
+                                        JoinType.Left,po.postsID==pp.postsID,
+                                        JoinType.Left,po.postsMaker==ur.openid})
+                                                .Select((po, pp, ur) => new PostsPics
+                                                {
+                                                    postsID = po.postsID,
+                                                    postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
+                                                    postsPics = pp.picPath,
+                                                    postsMaker = ur.nickName,
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.loveStatus == 1).Count(),
+                                                    //postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
+                                                    postsStatus = po.postsStatus,
+                                                    postsMakeDate = po.postsMakeDate,
+                                                    postsPicCount = po.postsPicCount,
+                                                    postsReported = po.postsReported,
+                                                    postsCollected = po.postsCollected,
+                                                    picSimpPath = pp.picSimpPath,
+                                                    openId = ur.openid,
+                                                    picIndex = pp.picIndex,
+                                                    postsType = po.postsType,
+                                                    ifOfficial = po.ifOfficial,
+                                                    picsRate = pp.picsRate,
+                                                    makerPhoto = ur.avantarUrl,
+                                                    ifLY = po.ifLY,
+                                                    ifUserLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.userID == openId && tl.loveStatus == 1).Count()
+
+                                                }).Where(pp => pp.picIndex == 0).
+                                                Where(po=>tempPosts.Contains(po.postsID)).
+                                                Where(po => (po.postsStatus != 1 || po.ifOfficial == 1)).
+                                                Where(po => po.ifLY == 1).OrderBy(po => calcDistance(po.latitude, po.longitude, lati, longti)).ToList();
                 }
 
                 if (config.onlyVerify == 1)
                 {
-                    postsList = postsList.Where(po => po.postsStatus == 1).OrderBy(po => po.postsMakeDate, OrderByType.Desc);
+                    postsList = db.Queryable<tbl_posts, tbl_postspics, tbl_user>((po, pp, ur) => new object[] {
+                                        JoinType.Left,po.postsID==pp.postsID,
+                                        JoinType.Left,po.postsMaker==ur.openid})
+                                                .Select((po, pp, ur) => new PostsPics
+                                                {
+                                                    postsID = po.postsID,
+                                                    postsContent = SqlFunc.IIF(SqlFunc.Length(po.postsContent) >= 20, SqlFunc.Substring(po.postsContent, 0, 20), po.postsContent),
+                                                    postsPics = pp.picPath,
+                                                    postsMaker = ur.nickName,
+                                                    postsLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.loveStatus == 1).Count(),
+                                                    //postsReaded = SqlFunc.Subqueryable<tbl_userviewed>().Where(tv => tv.postsID == po.postsID).Count(),
+                                                    postsStatus = po.postsStatus,
+                                                    postsMakeDate = po.postsMakeDate,
+                                                    postsPicCount = po.postsPicCount,
+                                                    postsReported = po.postsReported,
+                                                    postsCollected = po.postsCollected,
+                                                    picSimpPath = pp.picSimpPath,
+                                                    openId = ur.openid,
+                                                    picIndex = pp.picIndex,
+                                                    postsType = po.postsType,
+                                                    ifOfficial = po.ifOfficial,
+                                                    picsRate = pp.picsRate,
+                                                    makerPhoto = ur.avantarUrl,
+                                                    ifLY = po.ifLY,
+                                                    ifUserLoved = SqlFunc.Subqueryable<tbl_userloved>().Where(tl => tl.postsID == po.postsID && tl.userID == openId && tl.loveStatus == 1).Count()
+
+                                                }).Where(pp => pp.picIndex == 0).Where(tp => tp.postsStatus == 1).ToList();
                 }
-                postsList = postsList.Where(po => po.postsMakeDate <= refreshTime);
-                return postsList.ToPageList(from / count + 1, count);
+
+                //postsList = postsList.Where(po => po.postsMakeDate <= refreshTime);
+                return postsList;
             }
             catch (Exception e)
             {
@@ -561,6 +702,24 @@ namespace CatsProj.DAL.Providers
             DataTable replyCount = db.Ado.UseStoredProcedure().GetDataTable("proc_getReplyCount", new { openId = openId, fromwhen = lastRefresh });
             var i = 0;
             List<ReplyNLoveCount> replyCountList = new List<ReplyNLoveCount>();
+            //replyCountList = db.Queryable<tbl_posts, tbl_user, tbl_reply, tbl_postspics>((tp, tu, tr, tpp) => new object[]
+            //{
+            //    JoinType.Left,tp.postsMaker==tu.openid,
+            //    JoinType.Left,tp.postsID==tr.postsID,
+            //    JoinType.Left,tp.postsID==tpp.postsID
+            //}).Select((tp, tu, tr, tpp) => new ReplyNLoveCount
+            //{
+            //    postsId = tp.postsID,
+            //    replyCount = SqlFunc.AggregateCount(tr.replyID),
+            //    picsSimpPath = tpp.picSimpPath,
+            //    postsLoveCount = 0,
+            //    replydate=tr.replyDate.Value,
+            //    picindex=tpp.picIndex,
+            //    replyMaker=tr.replyMaker,
+            //    postsmaker=tp.postsMaker
+            //}).MergeTable().Where(tr=>tr.replyMaker!=openId && tr.replydate>=lastRefresh).Where(tpp=>tpp.picindex==0)
+            //.Where(tp=>tp.postsmaker==openId)
+            //.GroupBy(tp => tp.postsId).ToList();
             if (replyCount.Rows.Count > 0)
             {
                 for (i = 0; i < replyCount.Rows.Count; i++)
@@ -577,6 +736,24 @@ namespace CatsProj.DAL.Providers
             DataTable lovedCount = db.Ado.UseStoredProcedure().GetDataTable("proc_getPostsLoved", new { openId = openId, fromwhen = lastRefresh });
             i = 0;
             List<ReplyNLoveCount> lovedCountList = new List<ReplyNLoveCount>();
+            //lovedCountList = db.Queryable<tbl_posts, tbl_user, tbl_userloved, tbl_postspics>((tp, tu, tul, tpp) => new object[]
+            //{
+            //    JoinType.Left,tp.postsMaker==tu.openid,
+            //    JoinType.Left,tp.postsID==tul.postsID,
+            //    JoinType.Left,tp.postsID==tpp.postsID
+            //}).Select((tp, tu, tul, tpp) => new ReplyNLoveCount
+            //{
+            //    postsId = tp.postsID,
+            //    replyCount = 0,
+            //    picsSimpPath = tpp.picSimpPath,
+            //    postsLoveCount = SqlFunc.AggregateCount(tul.lovedID),
+            //    lovedTime = tul.lovedTime.Value,
+            //    picindex = tpp.picIndex,
+            //    userId = tul.userID,
+            //    postsmaker = tp.postsMaker
+            //}).MergeTable().Where(tul => tul.userId != openId && tul.lovedTime >= lastRefresh).Where(tpp => tpp.picindex == 0)
+            //.Where(tp => tp.postsmaker == openId)
+            //.GroupBy(tp => tp.postsId).ToList();
             if (lovedCount.Rows.Count > 0)
             {
                 for (i = 0; i < lovedCount.Rows.Count; i++)
@@ -603,6 +780,27 @@ namespace CatsProj.DAL.Providers
             DataTable replyCount = db.Ado.UseStoredProcedure().GetDataTable("proc_getAfterReplyCount", new { openId = openId, fromwhen = lastRefresh });
             var i = 0;
             List<ReplyNLoveCount> replyCountList = new List<ReplyNLoveCount>();
+            //replyCountList = db.Queryable<tbl_posts, tbl_reply, tbl_replyAfterReply, tbl_postspics>((tp, tr, tra, tpp) => new object[]
+            //{
+            //    JoinType.Left,tr.replyID==tra.replyId,
+            //    JoinType.Left,tp.postsID==tr.postsID,
+            //    JoinType.Left,tp.postsID==tpp.postsID
+            //})
+            //.Where((tp, tr, tra, tpp)=>(tr.replyMaker==openId || tra.replyToUser==openId) && tra.replyMaker!=openId && tra.replyDate>=lastRefresh &&tpp.picIndex==0)
+            //.Select((tp, tr, tra, tpp) => new ReplyNLoveCount
+            //{
+            //    postsId = tp.postsID,
+
+            //    replyCount = SqlFunc.AggregateCount(tra.replyId),
+            //    picsSimpPath = tpp.picSimpPath,
+            //    postsLoveCount = 0,
+            //    replydate = tra.replyDate,
+            //    picindex = tpp.picIndex,
+            //    replyMaker = tr.replyMaker,
+            //    postsmaker = tp.postsMaker,
+            //    replyToUser=tra.replyToUser
+            //}).MergeTable()
+            //.GroupBy(tp => tp.postsId).ToList();
             if (replyCount.Rows.Count > 0)
             {
                 for (i = 0; i < replyCount.Rows.Count; i++)
@@ -619,6 +817,26 @@ namespace CatsProj.DAL.Providers
             DataTable lovedCount = db.Ado.UseStoredProcedure().GetDataTable("proc_getAfterReplyLoved", new { openId = openId, fromwhen = lastRefresh });
             i = 0;
             List<ReplyNLoveCount> lovedCountList = new List<ReplyNLoveCount>();
+            //lovedCountList = db.Queryable<tbl_posts, tbl_reply, tbl_userReplyLoved, tbl_postspics>((tp, tr, tra, tpp) => new object[]
+            // {
+            //    JoinType.Left,tr.replyID==tra.replyId,
+            //    JoinType.Left,tp.postsID==tr.postsID,
+            //    JoinType.Left,tp.postsID==tpp.postsID
+            // })
+            //.Where((tp, tr, tra, tpp) => tr.replyMaker == openId  && tra.openId != openId && tra.lovedTime >= lastRefresh && tpp.picIndex == 0)
+            //.Select((tp, tr, tra, tpp) => new ReplyNLoveCount
+            //{
+            //    postsId = tp.postsID,
+            //    replyCount = 0,
+            //    picsSimpPath = tpp.picSimpPath,
+            //    postsLoveCount = SqlFunc.AggregateCount(tra.lovedId),
+            //    replydate = tra.lovedTime,
+            //    picindex = tpp.picIndex,
+            //    replyMaker = tr.replyMaker,
+            //    postsmaker = tp.postsMaker
+            //    //replyToUser = tra.replyToUser
+            //}).MergeTable()
+            //.GroupBy(tp => tp.postsId).ToList();
             if (lovedCount.Rows.Count > 0)
             {
                 for (i = 0; i < lovedCount.Rows.Count; i++)

@@ -6,3 +6,15 @@
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Release/CatsProj.DB.csprojResolveAssemblyReference.cache
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Release/CatsProj.DB.csproj.CoreCompileInputs.cache
 /Users/kuzuen/Projects/MyMVCProj/CatsProj.DB/obj/Release/CatsProj.DB.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\CatsProj.DB.dll.config
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\CatsProj.DB.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\CatsProj.Tools.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\Google.Protobuf.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\MySql.Data.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\SqlSugar.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\Google.Protobuf.xml
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Release\MySql.Data.xml
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Release\CatsProj.DB.csprojAssemblyReference.cache
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Release\CatsProj.DB.csproj.CoreCompileInputs.cache
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Release\CatsProj.DB.csproj.CopyComplete
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Release\CatsProj.DB.dll

@@ -97,5 +97,6 @@ namespace Cats.DataEntiry
         public decimal picsRate { get; set; }
         public int ifNewPost { get; set; }
         public int ifUserLoved { get; set; }
+        
     }
 }

@@ -16,6 +16,10 @@ using CatsProj.Tools;
 using Newtonsoft.Json;
 using Cats.DataEntiry;
 using System.Web.Configuration;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
+using System.Xml;
 
 namespace CatsProj.BLL.Handlers
 {
@@ -55,6 +59,7 @@ namespace CatsProj.BLL.Handlers
                 double ratio = origImage.Width / origImage.Height;
                 string origFilePath = origPath + id.ToString() + ".jpg";
                 origImage.Save(origFilePath);
+                CompressImage(origFilePath, origFilePath);
                 //CompressImage(origFilePath, origFilePath);
                 string simplePic = "/images/simple/" + id.ToString() + ".jpg";
                 decimal rate;
@@ -592,7 +597,7 @@ namespace CatsProj.BLL.Handlers
         //    return result;
         //}
 
-        public static bool CompressImage(string sFile, string dFile, int flag = 90, int size = 300, bool sfsc = true)
+        public static bool CompressImage(string sFile, string dFile, int flag = 90, int size = 500, bool sfsc = true)
         {
             FileStream fileStream = new FileStream(sFile, FileMode.Open, FileAccess.Read, FileShare.Read);
             // 读取文件的 byte[]  
@@ -711,6 +716,28 @@ namespace CatsProj.BLL.Handlers
         public PosterContentModel getPosterContent()
         {
             return PosterConverter.converContentToModel(new PicsProvider().getRandContent());
+        }
+
+        public FaceDetectModel getFaceRange(Stream source)
+        {
+            Bitmap srcImg = new Bitmap(source);
+            CascadeClassifier classifier = new CascadeClassifier(WebConfigurationManager.AppSettings["catFace"]);
+            Image<Bgr, byte> image = new Image<Bgr, byte>(srcImg);
+            Image<Gray, byte> newImg = image.Convert<Gray, byte>();
+            CvInvoke.CvtColor(image, newImg, ColorConversion.Bgr2Gray);
+            Rectangle[] sths = classifier.DetectMultiScale(image,1.2);
+            image.Dispose();
+            newImg.Dispose();
+            FaceDetectModel model = new FaceDetectModel();
+            if (sths.Length > 0)
+            {
+                model.startX = sths[0].X;
+                model.startY = sths[0].Y;
+                model.width = sths[0].Width;
+                model.height = sths[0].Height;
+            }
+            return model;
+            
         }
     }
 }

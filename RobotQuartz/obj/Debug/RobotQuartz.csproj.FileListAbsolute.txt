@@ -14,7 +14,6 @@ E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\CatsProj.Tools.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\Magick.NET-Q16-AnyCPU.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\Newtonsoft.Json.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\EntityModelConverter.dll
-E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\SqlSugar.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\CatsProj.DB.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\CatsProj.BLL.pdb
 E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\CatsProj.BLL.dll.config
@@ -37,3 +36,16 @@ E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\CatsProj.DB.dll.config
 E:\MyMVCProj\MyMVCProj\RobotQuartz\obj\Debug\RobotQuartz.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\RobotQuartz\obj\Debug\RobotQuartz.dll
 E:\MyMVCProj\MyMVCProj\RobotQuartz\obj\Debug\RobotQuartz.pdb
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\SqlSugar.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\Emgu.CV.World.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\Emgu.CV.World.xml
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x64\concrt140.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x64\cvextern.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x64\msvcp140.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x64\opencv_ffmpeg343_64.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x64\vcruntime140.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x86\concrt140.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x86\cvextern.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x86\msvcp140.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x86\opencv_ffmpeg343.dll
+E:\MyMVCProj\MyMVCProj\RobotQuartz\bin\Debug\x86\vcruntime140.dll

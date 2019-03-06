@@ -31,17 +31,32 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csdemo\tbl_banner.cs" />
+    <Compile Include="csdemo\tbl_buyrecord.cs" />
+    <Compile Include="csdemo\tbl_cartItem.cs" />
+    <Compile Include="csdemo\tbl_csCate.cs" />
+    <Compile Include="csdemo\tbl_csItem.cs" />
+    <Compile Include="csdemo\tbl_csItemPics.cs" />
+    <Compile Include="csdemo\tbl_receiveAddress.cs" />
+    <Compile Include="csdemo\tbl_sellRecord.cs" />
+    <Compile Include="csdemo\tbl_shopcart.cs" />
+    <Compile Include="csdemo\tbl_trace.cs" />
     <Compile Include="DailyMission.cs" />
     <Compile Include="tbl_commondesc.cs" />
     <Compile Include="tbl_dailyMission.cs" />
+    <Compile Include="tbl_elementbuyrecord.cs" />
+    <Compile Include="tbl_elementdetail.cs" />
+    <Compile Include="tbl_elementgroup.cs" />
     <Compile Include="tbl_event.cs" />
     <Compile Include="tbl_log.cs" />
     <Compile Include="tbl_missionConfig.cs" />
+    <Compile Include="tbl_password.cs" />
     <Compile Include="tbl_picEffect.cs" />
     <Compile Include="tbl_pointConfig.cs" />
     <Compile Include="tbl_posterContent.cs" />
     <Compile Include="tbl_posterlayout.cs" />
     <Compile Include="tbl_qdRecord.cs" />
+    <Compile Include="tbl_referscore.cs" />
     <Compile Include="tbl_robot.cs" />
     <Compile Include="tbl_robotContent.cs" />
     <Compile Include="tbl_robotReply.cs" />
@@ -63,9 +78,11 @@
     <Compile Include="tbl_user.cs" />
     <Compile Include="tbl_userloved.cs" />
     <Compile Include="PostsPics.cs" />
+    <Compile Include="tbl_usersaveelement.cs" />
     <Compile Include="tbl_userShare.cs" />
     <Compile Include="tbl_userviewed.cs" />
     <Compile Include="tbl_welcomeform.cs" />
+    <Compile Include="tbl_wxpay.cs" />
     <Compile Include="UserReply.cs" />
     <Compile Include="tbl_userConfig.cs" />
     <Compile Include="tbl_userFollowed.cs" />

@@ -44,7 +44,10 @@ namespace CatsProj.DAL.Providers
                 record.qdTime = DateTime.Now;
                 record.qdScore = result;
                 db.Insertable<tbl_qdRecord>(record).ExecuteCommand();
-
+                tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == openId).First();
+                long score = user.totalScore;
+                user.totalScore += result;
+                db.Updateable<tbl_user>(user).Where(o => o.openid == openId).ExecuteCommand();
                 return result;
             }
         }
@@ -82,6 +85,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             break;
@@ -92,6 +96,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             break;
@@ -102,6 +107,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             
@@ -113,6 +119,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             break;
@@ -123,6 +130,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             
@@ -134,6 +142,7 @@ namespace CatsProj.DAL.Providers
                                 if (item.finished)
                                 {
                                     updateMissionStatus(item.dailyId);
+                                    //addScoreForRefer(openId, item.score, item.dailyId);
                                 }
                             }
                             
@@ -171,6 +180,12 @@ namespace CatsProj.DAL.Providers
             SqlSugarClient db = SqlSugarInstance.newInstance();
             tbl_dailyMission mission = db.Queryable<tbl_dailyMission>().Where(o => o.dailyId == dailyId).First();
             mission.finished = 1;
+            int missionId = mission.missionId;
+            int score = db.Queryable<tbl_missionConfig>().Where(o => o.missionId == missionId).First().score;
+            string openId = mission.openId;
+            tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == openId).First();
+            user.totalScore += score;
+            db.Updateable<tbl_user>(user).Where(o => o.openid == openId).ExecuteCommand();
             db.Updateable<tbl_dailyMission>(mission).Where(o => o.dailyId == dailyId).ExecuteCommand();
         }
 
@@ -193,7 +208,7 @@ namespace CatsProj.DAL.Providers
                 missionId = td.missionId,
                 missionDate = td.missionDate,
                 received = td.received
-            }).Where(td => td.missionDate == DateTime.Now.Date && td.openId == openId).ToList();
+            }).Where(td => td.missionDate.Date == DateTime.Now.Date && td.openId == openId).ToList();
             foreach(var item in missions)
             {
                 if(item.finished==true && item.received == 0)
@@ -275,5 +290,83 @@ namespace CatsProj.DAL.Providers
             int invites = db.Queryable<tbl_user>().Where(o => o.referBy == openId && o.registerDate.Value.Date == DateTime.Now.Date).Count();
             return invites >= times;
         }
+
+        public int calcYesterdayScore(string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            var missions = db.Queryable<tbl_missionConfig, tbl_dailyMission>((tm, td) => new object[] {
+                JoinType.Left,tm.missionId==td.missionId
+            }).Select((tm, td) => new DailyMission
+            {
+                dailyId = td.dailyId,
+                detailDesc = tm.detailDesc,
+                finished = (SqlFunc.IIF(td.finished == 1, true, false)),
+                missionDesc = tm.missionDesc,
+                openId = td.openId,
+                score = tm.score,
+                times = tm.times,
+                missionId = td.missionId,
+                missionDate = td.missionDate,
+                received = td.received
+            }).Where(td => td.missionDate.Date == DateTime.Now.AddDays(-1).Date && td.openId == openId).ToList();
+            int yestScore = 0;
+            foreach(var item in missions)
+            {
+                if(item.finished==true && item.received == 1)
+                {
+                    yestScore += item.score;
+                }
+            }
+            tbl_user user = db.Queryable<tbl_user>().Where(o => o.openid == openId).First();
+            user.totalScore = user.totalScore + yestScore;
+            db.Updateable<tbl_user>(user).Where(o => o.openid == openId).ExecuteCommand();
+            return yestScore;
+        }
+
+        public List<DailyMission> getPreviousScore(string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            var prevScore = db.Queryable<tbl_missionConfig, tbl_dailyMission>((tm, td) => new object[] {
+                JoinType.Left,tm.missionId==td.missionId
+            }).Select((tm, td) => new DailyMission
+            {
+                score = SqlFunc.AggregateSum(SqlFunc.IIF(td.received==1, tm.score,0) ),
+                missionDate = td.missionDate
+            }).Where(td => td.missionDate.AddDays(6) >= DateTime.Now.Date && td.openId == openId)
+            .GroupBy(td => td.missionDate).GroupBy(td => td.openId).ToList();
+            return prevScore;
+        }
+
+        public void addScoreForRefer(string openId, int score, string missionId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            var referer = db.Queryable<tbl_user>().Where(o => o.openid == openId).Select(o => o.referBy);
+            if (referer.Count() > 0)
+            {
+                tbl_referscore referscore = new tbl_referscore();
+                referscore.openId = openId;
+                referscore.referer = referer.First();
+                referscore.missionDate = DateTime.Now.Date;
+                referscore.score = (int)Math.Floor(Convert.ToDecimal(score / 2));
+                db.Insertable<tbl_referscore>(referscore).ExecuteCommand();
+            }
+        }
+
+        public List<DailyMission> getPrevScoreRefer(string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance();
+            List<DailyMission> prevScoreRefer = db.Queryable<tbl_referscore>()
+                .Where(o => o.referer == openId && DateTime.Now.Date<=o.missionDate.Date.AddDays(6))
+                .GroupBy(o => o.referer).GroupBy(o => o.missionDate)
+                .Select(o => new DailyMission
+            {
+                score = SqlFunc.AggregateSum(o.score),
+                missionDate = o.missionDate,
+                openId = o.referer
+            }).ToList();
+            return prevScoreRefer;
+        }
+
+        
     }
 }

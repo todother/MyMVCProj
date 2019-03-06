@@ -31,8 +31,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csDemo\CSAddressModel.cs" />
+    <Compile Include="csDemo\CSCateModel.cs" />
+    <Compile Include="csDemo\CSItemModel.cs" />
+    <Compile Include="csDemo\CSPicModel.cs" />
+    <Compile Include="csDemo\CSSellModel.cs" />
+    <Compile Include="csDemo\ShopCartItemModel.cs" />
     <Compile Include="DailyMissionModel.cs" />
+    <Compile Include="ElementDetailModel.cs" />
+    <Compile Include="ElementGroupModel.cs" />
     <Compile Include="EventModel.cs" />
+    <Compile Include="FaceDetectModel.cs" />
     <Compile Include="PicEffectModel.cs" />
     <Compile Include="PosterContentModel.cs" />
     <Compile Include="PosterModel.cs" />

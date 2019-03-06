@@ -13,7 +13,7 @@ namespace CatsProj.DB
     {
 
         private static string _key = "lovingCats";
-        public static SqlSugarClient newInstance()
+        public static SqlSugarClient newInstance(string database = "Cats")
         {
             Contract.Ensures(Contract.Result<SqlSugarClient>() != null);
             try
@@ -22,6 +22,7 @@ namespace CatsProj.DB
                 string user = WebConfigurationManager.AppSettings["user"];
                 string pwd1 = WebConfigurationManager.AppSettings["Pwd1"];
                 string pwd2 = WebConfigurationManager.AppSettings["Pwd2"];
+
                 string aesKey = _key;
 
                 var expMethods = new List<SqlFuncExternal>();
@@ -52,7 +53,7 @@ namespace CatsProj.DB
                 SqlSugarClient db = new SqlSugarClient(
                     new ConnectionConfig()
                     {
-                        ConnectionString = "server=" + AesDecrypt(DBPath) + ";uid=" + AesDecrypt(user) + ";pwd=" + AesDecrypt(pwd1) + AesDecrypt(pwd2) + ";database=cats;Character Set=utf8mb4",//"server="+DBPath+";uid="+user+";pwd="+pwd1+pwd2+";database=cats",
+                        ConnectionString = "server=" + AesDecrypt(DBPath) + ";uid=" + AesDecrypt(user) + ";pwd=" + AesDecrypt(pwd1) + AesDecrypt(pwd2) + ";database="+database+";Character Set=utf8mb4; Old Guids=true",//"server="+DBPath+";uid="+user+";pwd="+pwd1+pwd2+";database=cats",
                         DbType = SqlSugar.DbType.MySql,
                         InitKeyType = InitKeyType.Attribute,
                         IsAutoCloseConnection = true,
@@ -78,7 +79,7 @@ set collation_connection=utf8mb4_general_ci;", new List<SugarParameter>() { new 
                 SqlSugarClient db = new SqlSugarClient(
                     new ConnectionConfig()
                     {
-                        ConnectionString = "server=" + AesDecrypt(DBPath) + ";uid=" + AesDecrypt(user) + ";pwd=" + AesDecrypt(pwd1) + AesDecrypt(pwd2) + ";database=cats",//"server="+DBPath+";uid="+user+";pwd="+pwd1+pwd2+";database=cats",
+                        ConnectionString = "server=" + AesDecrypt(DBPath) + ";uid=" + AesDecrypt(user) + ";pwd=" + AesDecrypt(pwd1) + AesDecrypt(pwd2) + ";database="+database,//"server="+DBPath+";uid="+user+";pwd="+pwd1+pwd2+";database=cats",
                         DbType = SqlSugar.DbType.MySql,
                         InitKeyType = InitKeyType.Attribute //初始化主键和自增列信息到ORM的方式
                     });

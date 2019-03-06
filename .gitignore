@@ -1,1 +1,6 @@
 .vs
+/MyMVCProj/images/original
+/MyMVCProj/images/simple
+/MyMVCProj/obj/Release/Package/PackageTmp/node_modules
+/MyMVCProj/obj/Release/Package/PackageTmp/resources
+/MyMVCProj/obj/Release/Package/PackageTmp/www

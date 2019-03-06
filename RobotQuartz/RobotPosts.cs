@@ -14,8 +14,8 @@ namespace RobotQuartz
         public void Execute(IJobExecutionContext context)
         {
             RobotHandler handler = new RobotHandler();
-            handler.robotPics();
-            handler.robotUserReply();
+            //handler.robotPics();
+            //handler.robotUserReply();
         }
     }
 }

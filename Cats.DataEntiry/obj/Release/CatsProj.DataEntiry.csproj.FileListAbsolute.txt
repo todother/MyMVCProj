@@ -2,3 +2,7 @@
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Release/CatsProj.DataEntiry.csprojResolveAssemblyReference.cache
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Release/CatsProj.DataEntiry.csproj.CoreCompileInputs.cache
 /Users/kuzuen/Projects/MyMVCProj/Cats.DataEntiry/obj/Release/Cats.DataEntiry.dll
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\bin\Release\Cats.DataEntiry.dll
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Release\CatsProj.DataEntiry.csprojAssemblyReference.cache
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Release\CatsProj.DataEntiry.csproj.CoreCompileInputs.cache
+E:\MyMVCProj\MyMVCProj\Cats.DataEntiry\obj\Release\Cats.DataEntiry.dll

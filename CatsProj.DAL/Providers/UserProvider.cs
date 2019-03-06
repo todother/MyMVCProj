@@ -243,21 +243,21 @@ namespace CatsProj.DAL.Providers
             try
             {
                 SqlSugarClient db = SqlSugarInstance.newInstance();
-                DataTable dt = db.Ado.UseStoredProcedure().GetDataTable("proc_scorecard", new { });
-                List<string> scores = new List<string>();
-                int i = 0;
-                for (i = 0; i < 200; i++)
-                {
-                    if (i < dt.Rows.Count)
-                    {
-                        scores.Add(dt.Rows[i][0].ToString());
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                List<tbl_user> users = db.Queryable<tbl_user>().Where(o => scores.Contains(o.openid)).ToList();
+                //DataTable dt = db.Ado.UseStoredProcedure().GetDataTable("proc_scorecard", new { });
+                //List<string> scores = new List<string>();
+                //int i = 0;
+                //for (i = 0; i < 200; i++)
+                //{
+                //    if (i < dt.Rows.Count)
+                //    {
+                //        scores.Add(dt.Rows[i][0].ToString());
+                //    }
+                //    else
+                //    {
+                //        break;
+                //    }
+                //}
+                List<tbl_user> users = db.Queryable<tbl_user>().Where(o=>o.ifRobot!=1).OrderBy(o=>getRand()).ToList().GetRange(0,20);
                 return users;
             }
             catch (Exception e)
@@ -265,6 +265,8 @@ namespace CatsProj.DAL.Providers
                 return new List<tbl_user>();
             }
         }
+
+        
 
         public bool ifUserFollowedByOpenId(string openId, string userId)
         {

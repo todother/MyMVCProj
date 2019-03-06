@@ -21,3 +21,6 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.csproj.CoreCompileInput
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DB\obj\Debug\CatsProj.DB.pdb
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\Google.Protobuf.dll
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\MySql.Data.xml
+E:\MyMVCProj\MyMVCProj\CatsProj.DB\bin\Debug\Google.Protobuf.xml

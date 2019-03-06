@@ -35,3 +35,4 @@ E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.csproj.CoreCompileInp
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.csproj.CopyComplete
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.dll
 E:\MyMVCProj\MyMVCProj\CatsProj.DAL\obj\Debug\CatsProj.DAL.pdb
+E:\MyMVCProj\MyMVCProj\CatsProj.DAL\bin\Debug\Newtonsoft.Json.pdb

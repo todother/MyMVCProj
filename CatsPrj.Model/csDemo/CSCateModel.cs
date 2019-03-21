@@ -13,5 +13,7 @@ namespace CatsPrj.Model.csDemo
         public int cateIdx { get; set; }
         public string catePicName { get; set; }
         public List<CSItemModel> items { get; set; }
+        public bool selected { get; set; }
+        public int stock { get; set; }
     }
 }

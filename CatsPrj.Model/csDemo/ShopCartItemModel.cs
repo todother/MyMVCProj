@@ -13,6 +13,8 @@ namespace CatsPrj.Model.csDemo
         public double itemPrice { get; set; }
         public double itemPriceDdt { get; set; }
         public string Specs { get; set; }
+        public int stock { get; set; }
+        public string barcode { get; set; }
         public int buyCount { get; set; }
         public string picName { get; set; }
         public double scrollLeft { get; set; }

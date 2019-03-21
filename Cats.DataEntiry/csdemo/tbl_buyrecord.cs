@@ -11,5 +11,7 @@ namespace Cats.DataEntiry.csdemo
         public string cartId { get; set; }
         public string orderId { get; set; }
         public DateTime subTime { get; set; }
+
+        public string addressId { get; set; }
     }
 }

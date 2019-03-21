@@ -1,5 +1,7 @@
 ﻿using Cats.DataEntiry;
+using Cats.DataEntiry.csdemo;
 using CatsProj.DAL;
+using CatsProj.DAL.csDemo;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,18 +17,42 @@ namespace CatsProj.BLL
 {
     public class WXPayHandler
     {
-        public string RaiseWXPay(string DBPath,string payBody,string wxopenId)
+        public string RaiseWXPay(string DBPath, string wxopenId, string orderId, string userPacketId)
         {
             Dictionary<string, string> param = new Dictionary<string, string>();
             WXPayProvider provider = new WXPayProvider();
+            CSItemProvider csprovider = new CSItemProvider();
+            List<tbl_cartItemFull> items = csprovider.getItemsByOrderId(orderId, DBPath);
+            string itemNames = string.Empty;
+            double totalPrice = 0;
+            string fullInfo = string.Empty;
+            foreach (var item in items)
+            {
+                itemNames += item.itemName + ",";
+                fullInfo += item.itemName + "*" + item.buyCount.ToString() + ",";
+                totalPrice += Math.Round(item.itemPriceDdt * item.buyCount, 2);
+            }
+            userPacketId = userPacketId == null ? "" : userPacketId;
+            if (userPacketId.Length > 0)
+            {
+                tbl_userpacket packet = new CSItemProvider().getCoupon(DBPath, wxopenId, userPacketId);
+                if (packet != null)
+                {
+                    if (totalPrice >= packet.baseline && packet.deadline >= DateTime.Now)
+                    {
+                        totalPrice = (totalPrice - packet.packetAmt) <= 0 ? 0.01 : (totalPrice - packet.packetAmt);
+                        new CSItemProvider().useCoupon(DBPath, wxopenId, userPacketId, orderId);
+                    }
+                }
+            }
             tbl_wxpay shopInfo = provider.getShopInfo(DBPath);
             string appid = shopInfo.appid;
             string mch_id = shopInfo.mch_id;
             string nonce_str = Guid.NewGuid().ToString("N");
             string key = shopInfo.wxkey;
-            string body = payBody;
-            string out_trade_no = Guid.NewGuid().ToString("N");
-            string total_fee = "1";
+            string body = itemNames.Substring(0, itemNames.Length - 1);
+            string out_trade_no = orderId.Replace("-", "");
+            string total_fee = (totalPrice * 100).ToString();
             string spbill_create_ip = "223.64.148.206";
             string notify_url = "https://www.guojio.com";
             string trade_type = "JSAPI";
@@ -57,26 +83,28 @@ namespace CatsProj.BLL
 
             str.Append("key=" + key);
             string result = str.ToString();
-            string sign = GetMD5(result,"utf-8"); // MD5.Create(result).ToString().ToUpper();
+            string sign = GetMD5(result, "utf-8"); // MD5.Create(result).ToString().ToUpper();
             string xmlText = str1 + "sign=" + sign;
 
             XElement el = new XElement("root", param.Select(kv => new XElement(kv.Key, kv.Value)));
             el.Add(new XElement("sign", sign));
             int i = 0;
 
-            string postback= PostXML(el).ToString();
+            string postback = PostXML(el).ToString();
             XmlDocument document = new XmlDocument();
             document.LoadXml(postback);
             string prepay_id = document.SelectSingleNode("/xml/prepay_id").InnerText;
+
+            csprovider.addNewMessageId(wxopenId, prepay_id, 1, DBPath);
             return prepay_id;
 
         }
 
-        public Dictionary<string,string> generateMD5forPay(string prepayid,string DBPath)
+        public Dictionary<string, string> generateMD5forPay(string prepayid, string DBPath)
         {
             WXPayProvider provider = new WXPayProvider();
             tbl_wxpay shopInfo = provider.getShopInfo(DBPath);
-            string appId= shopInfo.appid;
+            string appId = shopInfo.appid;
             string timeStamp = ConvertDateTimeToInt(DateTime.Now).ToString();
             string nonceStr = Guid.NewGuid().ToString("N");
             string package = "prepay_id=" + prepayid;
@@ -102,10 +130,11 @@ namespace CatsProj.BLL
             str.Append("key=" + key);
             string result = str.ToString();
             string sign = GetMD5(result, "utf-8");
-            Dictionary<string, string> paraList= new Dictionary<string, string>();
+            Dictionary<string, string> paraList = new Dictionary<string, string>();
             paraList.Add("timeStamp", timeStamp);
             paraList.Add("nonceStr", nonceStr);
             paraList.Add("sign", sign);
+            paraList.Add("package", package);
             return paraList;
         }
 
@@ -117,7 +146,7 @@ namespace CatsProj.BLL
         }
 
 
-        public  string GetMD5(string encypStr, string charset)
+        public string GetMD5(string encypStr, string charset)
         {
             string retStr;
             MD5CryptoServiceProvider m5 = new MD5CryptoServiceProvider();
@@ -145,7 +174,7 @@ namespace CatsProj.BLL
         public string PostXML(XElement xml)
         {
             string WebUrl = "https://api.mch.weixin.qq.com/pay/unifiedorder";//换成接收方的URL
-            string result= RequestUrl(WebUrl, xml.ToString());
+            string result = RequestUrl(WebUrl, xml.ToString());
             return result;
         }
 
@@ -173,7 +202,7 @@ namespace CatsProj.BLL
             {
                 using (StreamReader reader = new StreamReader(wr.GetResponseStream(), encoding))
                 {
-                    string sth= reader.ReadToEnd();
+                    string sth = reader.ReadToEnd();
                     return sth;
                 }
             }

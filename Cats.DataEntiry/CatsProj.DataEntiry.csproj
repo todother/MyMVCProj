@@ -31,16 +31,30 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csdemo\CouponCanUse.cs" />
+    <Compile Include="csdemo\ItemWithSelCount.cs" />
+    <Compile Include="csdemo\tbl_admin.cs" />
     <Compile Include="csdemo\tbl_banner.cs" />
     <Compile Include="csdemo\tbl_buyrecord.cs" />
     <Compile Include="csdemo\tbl_cartItem.cs" />
+    <Compile Include="csdemo\tbl_cartItemFull.cs" />
     <Compile Include="csdemo\tbl_csCate.cs" />
     <Compile Include="csdemo\tbl_csItem.cs" />
     <Compile Include="csdemo\tbl_csItemPics.cs" />
+    <Compile Include="csdemo\tbl_csviewrecord.cs" />
+    <Compile Include="csdemo\tbl_failpay.cs" />
+    <Compile Include="csdemo\tbl_itemFullWithAddress.cs" />
+    <Compile Include="csdemo\tbl_msgTemplate.cs" />
     <Compile Include="csdemo\tbl_receiveAddress.cs" />
+    <Compile Include="csdemo\tbl_redpacketorig.cs" />
+    <Compile Include="csdemo\tbl_search.cs" />
     <Compile Include="csdemo\tbl_sellRecord.cs" />
+    <Compile Include="csdemo\tbl_sendmessage.cs" />
     <Compile Include="csdemo\tbl_shopcart.cs" />
     <Compile Include="csdemo\tbl_trace.cs" />
+    <Compile Include="csdemo\tbl_userloveitem.cs" />
+    <Compile Include="csdemo\tbl_userpacket.cs" />
+    <Compile Include="csdemo\UserApplyCoupon.cs" />
     <Compile Include="DailyMission.cs" />
     <Compile Include="tbl_commondesc.cs" />
     <Compile Include="tbl_dailyMission.cs" />

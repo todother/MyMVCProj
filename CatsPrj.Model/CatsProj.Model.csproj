@@ -31,12 +31,20 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csDemo\CouponCanUseModel.cs" />
     <Compile Include="csDemo\CSAddressModel.cs" />
     <Compile Include="csDemo\CSCateModel.cs" />
     <Compile Include="csDemo\CSItemModel.cs" />
+    <Compile Include="csDemo\CSItemWithAddress.cs" />
     <Compile Include="csDemo\CSPicModel.cs" />
     <Compile Include="csDemo\CSSellModel.cs" />
+    <Compile Include="csDemo\FailPayModel.cs" />
+    <Compile Include="csDemo\KVpari.cs" />
+    <Compile Include="csDemo\MsgNewOrder.cs" />
     <Compile Include="csDemo\ShopCartItemModel.cs" />
+    <Compile Include="csDemo\CartItemFullModel.cs" />
+    <Compile Include="csDemo\UserApplyCouponModel.cs" />
+    <Compile Include="csDemo\UserCouponModel.cs" />
     <Compile Include="DailyMissionModel.cs" />
     <Compile Include="ElementDetailModel.cs" />
     <Compile Include="ElementGroupModel.cs" />

@@ -13,12 +13,15 @@ namespace EntityModelConverter.csDemo
         public static CSAddressModel convertAddressToModel(tbl_receiveAddress entity)
         {
             CSAddressModel model = new CSAddressModel();
-            model.addressId = entity.addressId;
-            model.homeaddress = entity.homeaddress;
-            model.openId = entity.openId;
-            model.receiver = entity.receiver;
-            model.selected = entity.selected;
-            model.telno = entity.telno;
+            if (entity != null)
+            {
+                model.addressId = entity.addressId;
+                model.homeaddress = entity.homeaddress;
+                model.openId = entity.openId;
+                model.receiver = entity.receiver;
+                model.selected = entity.selected;
+                model.telno = entity.telno;
+            }
             return model;
         }
     }

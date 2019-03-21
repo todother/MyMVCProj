@@ -23,5 +23,27 @@ namespace CatsProj.DAL.Providers
             string token = db.Queryable<tbl_token>().First().accessToken;
             return token;
         }
+        public void updateCSToken(string demoName,string token)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance("appsecret");
+            tbl_password password = db.Queryable<tbl_password>().Where(o => o.demoname == demoName).First();
+            password.token = token;
+            db.Updateable<tbl_password>(password).Where(o => o.demoname == demoName).ExecuteCommand();
+        }
+
+        public List<tbl_password> getTokens()
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance("appsecret");
+            List<tbl_password> passwords = new List<tbl_password>();
+            passwords = db.Queryable<tbl_password>().ToList();
+            return passwords;
+        }
+
+        public string getToken(string DBPath)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance("appsecret");
+            string token = db.Queryable<tbl_password>().Where(o => o.demoname == DBPath).First().token;
+            return token;
+        }
     }
 }

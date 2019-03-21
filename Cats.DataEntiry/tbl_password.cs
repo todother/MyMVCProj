@@ -11,5 +11,6 @@ namespace Cats.DataEntiry
         public string appid { get; set; }
         public string appsecret { get; set; }
         public string demoname { get; set; }
+        public string token { get; set; }
     }
 }

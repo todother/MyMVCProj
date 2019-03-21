@@ -18,6 +18,7 @@ namespace EntityModelConverter.csDemo
             model.cateName = entity.cateName;
             model.catePicName = entity.catePicName;
             model.items = items;
+            model.selected = false;
             return model;
         }
     }

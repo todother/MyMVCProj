@@ -99,6 +99,11 @@ namespace CatsProj.DAL.csDemo
             cur.nickName = nickName;
             db.Updateable(cur).Where(o => o.openid == openid).UpdateColumns(arg => new { arg.nickName }).ExecuteCommand();
         }
-
+        public bool ifAdmin(string DBPath, string openId)
+        {
+            SqlSugarClient db = SqlSugarInstance.newInstance(DBPath);
+            Cats.DataEntiry.csdemo.tbl_admin admin = db.Queryable<Cats.DataEntiry.csdemo.tbl_admin>().Where(o => o.openId == openId).First();
+            return admin != null;
+        }
     }
 }

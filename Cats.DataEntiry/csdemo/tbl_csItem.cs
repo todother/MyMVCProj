@@ -15,5 +15,7 @@ namespace Cats.DataEntiry.csdemo
         public double itemPrice { get; set; }
         public double itemPriceDdt { get; set; }
         public string itemSpecs { get; set; }
+        public int stock { get; set; }
+        public string barcode { get; set; }
     }
 }

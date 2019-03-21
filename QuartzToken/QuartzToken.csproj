@@ -70,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cats.DataEntiry\CatsProj.DataEntiry.csproj">
+      <Project>{ab21f193-8548-4a82-a889-c09b91bfdca4}</Project>
+      <Name>CatsProj.DataEntiry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CatsProj.DAL\CatsProj.DAL.csproj">
       <Project>{4426a5e0-ddde-414a-9807-6e8d1fad4557}</Project>
       <Name>CatsProj.DAL</Name>

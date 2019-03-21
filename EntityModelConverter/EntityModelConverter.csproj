@@ -31,11 +31,13 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="csDemo\CouponConverter.cs" />
     <Compile Include="csDemo\CSAddressConverter.cs" />
     <Compile Include="csDemo\CSCateConverter.cs" />
     <Compile Include="csDemo\CSItemConverter.cs" />
     <Compile Include="csDemo\CSItemPicConverter.cs" />
     <Compile Include="csDemo\CSSellModel.cs" />
+    <Compile Include="csDemo\FailPayConverter.cs" />
     <Compile Include="csDemo\ShopCartConverter.cs" />
     <Compile Include="DailyMissionConverter.cs" />
     <Compile Include="ElementConverter.cs" />
